@@ -346,10 +346,16 @@ a:focus {
 
 .section--surface {
     padding: clamp(4rem, 10vw, 5.5rem) var(--layout-section-padding);
+    background-color: var(--color-surface);
+    position: relative;
+    z-index: 10;
 }
 
 .section--muted {
     padding: clamp(4rem, 10vw, 5.5rem) var(--layout-section-padding);
+    background-color: var(--color-background);
+    position: relative;
+    z-index: 10;
 }
 
 
@@ -2789,4 +2795,64 @@ main {
     .toast {
         transition: none;
     }
+}
+
+/* Neuralink-style Sticky Stack & Reveal */
+.section--sticky-stack {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    width: 100%;
+    z-index: 1;
+    box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.08);
+    background: var(--color-background);
+    /* Ensure changing background colors per section works for stacking */
+}
+
+/* Specific background overrides per section to ensure opacity */
+.section--hero.section--sticky-stack {
+    /* Hero usually has its own background/image, stick with that */
+    z-index: 1;
+}
+
+.section--about.section--sticky-stack {
+    background: var(--color-surface);
+    /* Example, check existing styles */
+    z-index: 2;
+}
+
+.section--goals.section--sticky-stack {
+    background: var(--color-background);
+    z-index: 3;
+}
+
+.section--cta.section--sticky-stack {
+    background: var(--color-surface);
+    z-index: 4;
+}
+
+/* Reveal Animations */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Delay modifiers */
+.reveal-delay-100 {
+    transition-delay: 0.1s;
+}
+
+.reveal-delay-200 {
+    transition-delay: 0.2s;
+}
+
+.reveal-delay-300 {
+    transition-delay: 0.3s;
 }
