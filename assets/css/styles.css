@@ -2390,14 +2390,15 @@ main {
 
 .research-hero__content h1 {
     margin: 0;
-    font-size: clamp(3rem, 6vw, 4.5rem);
-    line-height: 1.15;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.25;
     color: #1b2c4d;
+    text-wrap: balance;
 }
 
 .research-hero__image {
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     /* Increased from 600px */
     height: auto;
     object-fit: contain;
@@ -2413,7 +2414,7 @@ main {
 
 .research-hero__content {
     display: grid;
-    grid-template-columns: 1.8fr 1.2fr;
+    grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
     max-width: var(--layout-max-width);
