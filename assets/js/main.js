@@ -747,28 +747,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Reveal on scroll observer
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const revealCallback = (entries, observer) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // Trigger once
-            }
-        });
-    };
-
-    const revealObserver = new IntersectionObserver(revealCallback, observerOptions);
-
-    const revealElements = document.querySelectorAll('.reveal-on-scroll');
-    revealElements.forEach((element) => {
-        revealObserver.observe(element);
-    });
-});
