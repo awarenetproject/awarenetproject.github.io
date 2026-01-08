@@ -36,7 +36,7 @@ html {
     --layout-max-width: 1200px;
     --layout-fluid-width: min(92vw, var(--layout-max-width));
     --layout-section-padding: clamp(1.5rem, 5vw, 3.5rem);
-    --font-size-body: clamp(1.02rem, 0.96rem + 0.22vw, 1.18rem);
+    --font-size-body: 1rem;
     --workflow-figure-max-width: 840px;
     --workflow-illustration-max-width: 1080px;
 }

@@ -12,7 +12,7 @@ class SiteHeader extends HTMLElement {
                             alt="Fondazione Cariparo logo">
                     </span>
                     <span class="navbar__identity">
-                        <span class="navbar__title">AWARE<span class="navbar__title--accent">NET</span></span>
+                        <span class="navbar__title">AWARENET</span>
                     </span>
                 </a>
                 <button class="navbar__toggle" aria-expanded="false" aria-controls="primary-navigation">☰</button>

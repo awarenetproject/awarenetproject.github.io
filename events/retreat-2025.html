@@ -1,63 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retreat 2025 | AWARENET</title>
+    <title>Evento | AWARENET</title>
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
+
 <body class="theme-horizon">
-    <header class="site-header">
-        <nav class="navbar">
-            <a class="navbar__brand" href="../index.html" aria-label="AWARENET">
-                <span class="navbar__logos">
-                    <img class="navbar__partner" src="../assets/images/team/uni_icons/cariparo.png" alt="Fondazione Cariparo logo">
-                </span>
-                <span class="navbar__identity">
-                    <span class="navbar__title">AWARE<span class="navbar__title--accent">NET</span></span>
-                </span>
-            </a>
-            <button class="navbar__toggle" aria-expanded="false" aria-controls="primary-navigation">☰</button>
-            <ul id="primary-navigation" class="navbar__menu">
-                <li class="navbar__item"><a href="../index.html" class="navbar__link">Home</a></li>
-                <li class="navbar__item"><a href="../research.html" class="navbar__link">Research</a></li>
-                <li class="navbar__item"><a href="../team.html" class="navbar__link">Team</a></li>
-                <li class="navbar__item"><a href="../pages/news.html" class="navbar__link navbar__link--active">News</a></li>
-                <li class="navbar__item"><a href="../contact.html" class="navbar__link">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <site-header base-path=".." active-page="news"></site-header>
 
     <main>
         <section class="section section--surface" aria-labelledby="event-title">
             <div class="section__content section__content--narrow event-detail">
                 <a class="event-detail__back" href="../pages/news.html">Back to news</a>
-                <h1 id="event-title" class="event-detail__title">Retreat 2025 – Parma</h1>
-                <figure class="event-detail__media">
-                    <img src="../assets/images/news/parma.jpeg" alt="Researchers networking during the Retreat 2025 in Parma" loading="lazy">
-                </figure>
-                <p class="event-detail__meta">16 October 2025 · CNR Institute of Neuroscience, Parma</p>
-                <div class="event-detail__body">
-                    <p>The annual retreat gathers the entire AWARENET community for two days of scientific exchange, collaborative workshops, and networking opportunities.</p>
-                    <p>Key highlights of the 2025 edition include:</p>
-                    <ul>
-                        <li>Keynote lectures from leading neuroscientists on sensory integration and cognition.</li>
-                        <li>Interactive poster sessions featuring the latest results from partner laboratories.</li>
-                        <li>Career development roundtables dedicated to early-career researchers.</li>
-                    </ul>
-                    <p>Registration opens on 1 September 2025. The full agenda and logistics pack will be circulated to all members via email.</p>
-                </div>
+                <h1 id="event-title" class="event-detail__title" data-event-title>Parma Retreat 2025</h1>
+                <p class="event-detail__placeholder">You will soon find all the information about this event here.</p>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <p>&copy; <span id="current-year"></span> AWARENET. All rights reserved.</p>
-    </footer>
+    <site-footer></site-footer>
 
+    <script src="../assets/js/components/Header.js" type="module"></script>
+    <script src="../assets/js/components/Footer.js" type="module"></script>
     <script src="../assets/js/main.js"></script>
 </body>
+
 </html>

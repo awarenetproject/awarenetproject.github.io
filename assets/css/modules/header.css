@@ -65,18 +65,14 @@
 }
 
 .navbar__title {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-family);
     font-weight: 700;
     font-size: 1.6rem;
     line-height: 1;
     letter-spacing: 0.03em;
-    background: var(--gradient-crest);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: text-shadow 0.3s ease;
-    text-shadow: 0 4px 12px var(--crest-shadow);
-    padding-bottom: 0.2rem;
+    color: var(--color-title-strong);
     display: block;
+    padding-bottom: 0.2rem;
 }
 
 .navbar__title--accent {
@@ -144,6 +140,7 @@
 .navbar__link--disabled:hover {
     color: var(--color-muted);
 }
+
 .navbar__link--disabled::after {
     display: none;
 }
