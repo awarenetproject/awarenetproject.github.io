@@ -398,7 +398,8 @@ a:focus {
     width: 100%;
     max-width: var(--layout-fluid-width);
     display: grid;
-    gap: clamp(2rem, 3vw, 3rem);
+    gap: clamp(1.25rem, 2vw, 2rem);
+    justify-items: start;
 }
 
 .section--hero .section__content {
@@ -407,7 +408,7 @@ a:focus {
 }
 
 .section--hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4.2rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     color: #ffffff;
     line-height: 1.25;
     margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
@@ -417,16 +418,17 @@ a:focus {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.75rem 2rem;
-    border-radius: 12px;
+    padding: 0.85rem 2.75rem;
+    border-radius: 0;
     background: rgba(255, 255, 255, 0.16);
     color: #ffffff;
     font-weight: 600;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
     border: 1px solid rgba(255, 255, 255, 0.35);
     box-shadow: 0 14px 28px rgba(19, 37, 75, 0.28);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
-    margin-top: clamp(1.75rem, 4vw, 3.25rem);
+    margin-top: 0;
+    font-size: clamp(1rem, 1.9vw, 1.18rem);
 }
 
 .hero__cta:hover,
