@@ -5,40 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - AWARENET</title>
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
     <meta name="description"
         content="Get in touch with AWARENET for collaboration, inquiries, or more information about our research findings.">
 </head>
 
 <body class="theme-horizon contact-page">
-    <header class="site-header">
-        <nav class="navbar">
-            <a class="navbar__brand" href="index.html" aria-label="AWARENET">
-                <span class="navbar__logos">
-                    <img class="navbar__partner" src="assets/images/team/uni_icons/cariparo.png"
-                        alt="Fondazione Cariparo logo">
-                </span>
-                <span class="navbar__identity">
-                    <span class="navbar__title">AWARE<span class="navbar__title--accent">NET</span></span>
-                </span>
-            </a>
-            <button class="navbar__toggle" aria-expanded="false" aria-controls="primary-navigation">☰</button>
-            <ul id="primary-navigation" class="navbar__menu">
-                <li class="navbar__item"><a href="index.html" class="navbar__link">Home</a></li>
-                <li class="navbar__item"><a href="research.html" class="navbar__link">Research</a></li>
-                <li class="navbar__item"><a href="team.html" class="navbar__link">Team</a></li>
-                <li class="navbar__item"><a href="news.html" class="navbar__link">News</a></li>
-                <li class="navbar__item"><a href="contact.html" class="navbar__link navbar__link--active">Contact</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <site-header base-path=".." active-page="contact"></site-header>
 
     <main>
         <section class="section contact-hero" aria-labelledby="contact-intro-title">
@@ -136,11 +115,11 @@
         </section>
     </main>
 
-    <footer class="site-footer">
-        <p>&copy; <span id="current-year"></span> AWARENET. All rights reserved.</p>
-    </footer>
+    <site-footer></site-footer>
 
-    <script src="assets/js/main.js"></script>
+    <script src="../assets/js/components/Header.js" type="module"></script>
+    <script src="../assets/js/components/Footer.js" type="module"></script>
+    <script src="../assets/js/main.js"></script>
 </body>
 
 </html>

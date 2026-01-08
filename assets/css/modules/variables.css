@@ -1,0 +1,144 @@
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --color-primary: #3e5d96;
+    --color-secondary: #9a7ab8;
+    --color-background: #f6f3fb;
+    --color-surface: #ffffff;
+    --color-text: #25263a;
+    --color-muted: #5f5b78;
+    --color-accent: #dacde9;
+    --font-family: 'Montserrat';
+    --shadow-sm: 0 4px 14px rgba(62, 93, 150, 0.14);
+    --hero-figure-image: none;
+    --workflow-figure-image: none;
+    --header-offset: 5rem;
+    --gradient-background: linear-gradient(180deg, #f9f6ff 0%, #f4eff8 55%, #f6f1ec 100%);
+    --gradient-header: linear-gradient(120deg, rgba(248, 247, 255, 0.96) 0%, rgba(250, 243, 249, 0.92) 100%);
+    --gradient-crest: linear-gradient(135deg, #3e5d96 0%, #9a7ab8 100%);
+    --gradient-button: linear-gradient(135deg, #9a7ab8, #7f8ec4);
+    --gradient-button-secondary: linear-gradient(135deg, #3e5d96, #5f78bc);
+    --gradient-footer: linear-gradient(135deg, #3e5d96, #5f78bc);
+    --glass-border: rgba(62, 93, 150, 0.1);
+    --card-fill: rgba(62, 93, 150, 0.08);
+    --card-border: rgba(154, 122, 184, 0.22);
+    --surface-border: rgba(62, 93, 150, 0.14);
+    --focus-outline: rgba(154, 122, 184, 0.36);
+    --button-hover-shadow: 0 10px 24px rgba(154, 122, 184, 0.28);
+    --header-shadow: 0 12px 35px rgba(62, 93, 150, 0.12);
+    --crest-shadow: rgba(62, 93, 150, 0.32);
+    --hero-overlay: linear-gradient(135deg, rgba(35, 44, 73, 0.78) 0%, rgba(49, 59, 92, 0.42) 60%, rgba(78, 90, 122, 0.26) 100%);
+    --color-title-strong: #324d88;
+    --color-heading: #1f3f73;
+    --color-year-date: #2a1f5a;
+    --layout-max-width: 1200px;
+    --layout-fluid-width: min(92vw, var(--layout-max-width));
+    --layout-section-padding: clamp(1.5rem, 5vw, 3.5rem);
+    --font-size-body: clamp(1.02rem, 0.96rem + 0.22vw, 1.18rem);
+    --workflow-figure-max-width: 840px;
+    --workflow-illustration-max-width: 1080px;
+}
+
+@media (min-width: 1360px) {
+    :root {
+        --layout-max-width: 1320px;
+        --layout-fluid-width: min(90vw, var(--layout-max-width));
+    }
+}
+
+@media (min-width: 1600px) {
+    :root {
+        --layout-max-width: 1420px;
+        --layout-fluid-width: min(88vw, var(--layout-max-width));
+    }
+}
+
+@media (min-width: 1920px) {
+    :root {
+        --layout-max-width: 1520px;
+        --layout-fluid-width: min(85vw, var(--layout-max-width));
+    }
+}
+
+body.theme-dawn {
+    --color-primary: #3e5d96;
+    --color-secondary: #9a7ab8;
+    --color-muted: #5f5b78;
+    --color-background: #f6f3fb;
+    --color-accent: #dacde9;
+    --shadow-sm: 0 4px 14px rgba(62, 93, 150, 0.14);
+    --gradient-background: linear-gradient(180deg, #f9f6ff 0%, #f4eff8 55%, #f6f1ec 100%);
+    --gradient-header: linear-gradient(120deg, rgba(248, 247, 255, 0.96) 0%, rgba(250, 243, 249, 0.92) 100%);
+    --gradient-crest: linear-gradient(135deg, #3e5d96 0%, #9a7ab8 100%);
+    --gradient-button: linear-gradient(135deg, #9a7ab8, #7f8ec4);
+    --gradient-button-secondary: linear-gradient(135deg, #3e5d96, #5f78bc);
+    --gradient-footer: linear-gradient(135deg, #3e5d96, #5f78bc);
+    --glass-border: rgba(62, 93, 150, 0.1);
+    --card-fill: rgba(62, 93, 150, 0.08);
+    --card-border: rgba(154, 122, 184, 0.22);
+    --surface-border: rgba(62, 93, 150, 0.14);
+    --focus-outline: rgba(154, 122, 184, 0.36);
+    --button-hover-shadow: 0 10px 24px rgba(154, 122, 184, 0.28);
+    --header-shadow: 0 12px 35px rgba(62, 93, 150, 0.12);
+    --crest-shadow: rgba(62, 93, 150, 0.32);
+    --hero-overlay: linear-gradient(135deg, rgba(35, 44, 73, 0.78) 0%, rgba(49, 59, 92, 0.42) 60%, rgba(78, 90, 122, 0.26) 100%);
+    --color-title-strong: #324d88;
+    --color-heading: #1f3f73;
+    --color-year-date: #2a1f5a;
+}
+
+body.theme-horizon {
+    --color-primary: #3a6a9b;
+    --color-secondary: #a07aa7;
+    --color-muted: #5c607c;
+    --color-background: #f3f2fa;
+    --color-accent: #d7cade;
+    --shadow-sm: 0 4px 14px rgba(58, 104, 153, 0.14);
+    --gradient-background: linear-gradient(180deg, #f8f7ff 0%, #f2f1fb 52%, #f5eee7 100%);
+    --gradient-header: linear-gradient(120deg, rgba(248, 247, 255, 0.96) 0%, rgba(250, 243, 249, 0.92) 100%);
+    --gradient-crest: linear-gradient(135deg, #3a6a9b 0%, #a07aa7 100%);
+    --gradient-button: linear-gradient(135deg, #a07aa7, #7f90b8);
+    --gradient-button-secondary: linear-gradient(135deg, #3a6a9b, #5681b0);
+    --gradient-footer: linear-gradient(135deg, #3a6a9b, #5681b0);
+    --glass-border: rgba(58, 104, 153, 0.1);
+    --card-fill: rgba(58, 104, 153, 0.08);
+    --card-border: rgba(160, 122, 167, 0.22);
+    --surface-border: rgba(58, 104, 153, 0.16);
+    --focus-outline: rgba(160, 122, 167, 0.34);
+    --button-hover-shadow: 0 10px 24px rgba(160, 122, 167, 0.26);
+    --header-shadow: 0 12px 35px rgba(58, 104, 153, 0.12);
+    --crest-shadow: rgba(58, 104, 153, 0.3);
+    --hero-overlay: linear-gradient(135deg, rgba(36, 50, 74, 0.74) 0%, rgba(52, 70, 100, 0.4) 60%, rgba(88, 105, 129, 0.24) 100%);
+    --color-title-strong: #2f5a92;
+    --color-heading: #1f3f73;
+    --color-year-date: #1f285f;
+}
+
+body.theme-dusk {
+    --color-primary: rgba(64, 89, 142, 0.92);
+    --color-secondary: #b08aa5;
+    --color-muted: #655e77;
+    --color-background: #f4f0f6;
+    --color-accent: #dec9dc;
+    --shadow-sm: 0 4px 14px rgba(64, 89, 142, 0.15);
+    --gradient-background: linear-gradient(180deg, #f8f5ff 0%, #f2edf5 55%, #f7eee9 100%);
+    --gradient-header: linear-gradient(120deg, rgba(249, 247, 255, 0.96) 0%, rgba(250, 240, 245, 0.92) 100%);
+    --gradient-crest: linear-gradient(135deg, #40598e 0%, #b08aa5 100%);
+    --gradient-button: linear-gradient(135deg, #b08aa5, #8390be);
+    --gradient-button-secondary: linear-gradient(135deg, #40598e, #5f71aa);
+    --gradient-footer: linear-gradient(135deg, #40598e, #5f71aa);
+    --glass-border: rgba(64, 89, 142, 0.1);
+    --card-fill: rgba(64, 89, 142, 0.08);
+    --card-border: rgba(176, 138, 165, 0.24);
+    --surface-border: rgba(64, 89, 142, 0.15);
+    --focus-outline: rgba(176, 138, 165, 0.34);
+    --button-hover-shadow: 0 10px 24px rgba(176, 138, 165, 0.28);
+    --header-shadow: 0 12px 35px rgba(64, 89, 142, 0.12);
+    --crest-shadow: rgba(64, 89, 142, 0.32);
+    --hero-overlay: linear-gradient(135deg, rgba(38, 45, 70, 0.76) 0%, rgba(56, 62, 90, 0.42) 60%, rgba(88, 92, 120, 0.24) 100%);
+    --color-title-strong: #384f87;
+    --color-heading: #1f3f73;
+    --color-year-date: #281d56;
+}

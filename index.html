@@ -17,27 +17,7 @@
 </head>
 
 <body class="theme-horizon">
-    <header class="site-header">
-        <nav class="navbar">
-            <a class="navbar__brand" href="index.html" aria-label="AWARENET">
-                <span class="navbar__logos">
-                    <img class="navbar__partner" src="assets/images/team/uni_icons/cariparo.png"
-                        alt="Fondazione Cariparo logo">
-                </span>
-                <span class="navbar__identity">
-                    <span class="navbar__title">AWARE<span class="navbar__title--accent">NET</span></span>
-                </span>
-            </a>
-            <button class="navbar__toggle" aria-expanded="false" aria-controls="primary-navigation">☰</button>
-            <ul id="primary-navigation" class="navbar__menu">
-                <li class="navbar__item"><a href="index.html" class="navbar__link navbar__link--active">Home</a></li>
-                <li class="navbar__item"><a href="research.html" class="navbar__link">Research</a></li>
-                <li class="navbar__item"><a href="team.html" class="navbar__link">Team</a></li>
-                <li class="navbar__item"><a href="news.html" class="navbar__link">News</a></li>
-                <li class="navbar__item"><a href="contact.html" class="navbar__link">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <site-header base-path="." active-page="home"></site-header>
 
     <main>
         <section class="section section--hero" aria-labelledby="home-title">
@@ -66,7 +46,7 @@
                         <div class="about-highlight__content">
                             <h3 id="about-research">What we do</h3>
                             <p>A single map to understand how the brain generates and organizes consciousness.</p>
-                            <a class="about-highlight__link" href="research.html">Explore our Research</a>
+                            <a class="about-highlight__link" href="pages/research.html">Explore our Research</a>
                         </div>
                     </article>
                     <article class="about-highlight about-highlight--offset" aria-labelledby="about-team"
@@ -75,7 +55,7 @@
                         <div class="about-highlight__content">
                             <h3 id="about-team">An extended network</h3>
                             <p>AWARENET brings together Italy’s leading minds in systems and clinical neuroscience.</p>
-                            <a class="about-highlight__link" href="team.html">Meet the Team</a>
+                            <a class="about-highlight__link" href="pages/team.html">Meet the Team</a>
                         </div>
                     </article>
                 </div>
@@ -129,14 +109,14 @@
                 <p class="section__lead">Let’s explore meaningful partnerships that shape the future of conscious AI
                     together.</p>
             </div>
-            <a class="cta-button" href="contact.html">Contact us</a>
+            <a class="cta-button" href="pages/contact.html">Contact us</a>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <p>&copy; <span id="current-year"></span> AWARENET. All rights reserved.</p>
-    </footer>
+    <site-footer></site-footer>
 
+    <script src="assets/js/components/Header.js" type="module"></script>
+    <script src="assets/js/components/Footer.js" type="module"></script>
     <script src="assets/js/main.js"></script>
 </body>
 
