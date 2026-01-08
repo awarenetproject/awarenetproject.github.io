@@ -910,7 +910,7 @@ a:focus {
 .section--about {
     position: relative;
     max-width: var(--layout-fluid-width);
-    margin-top: clamp(12rem, 9vw, 6rem);
+    margin-top: 0;
 }
 
 
@@ -2842,4 +2842,60 @@ main {
 
 .section__content--full {
     max-width: 100%;
+}/* Event Detail Improvements - Minimal & Clean */
+
+.event-detail__image-container {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.event-detail__image {
+    width: 100%;
+    max-width: 400px;
+    /* Smaller, centered */
+    height: auto;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Option 1: Clean Row Metadata */
+.event-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    color: var(--color-muted);
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+.event-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.event-meta-separator {
+    color: var(--surface-border);
+    font-weight: 300;
+}
+
+.event-map-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 450px;
+    margin: 2rem 0;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    background: var(--card-fill);
+}
+
+.event-address {
+    font-style: normal;
+    line-height: 1.6;
+    color: var(--color-text);
 }
