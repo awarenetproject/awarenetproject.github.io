@@ -1,7 +1,7 @@
 /* Contact Hero */
 .contact-hero {
-    padding-block-start: clamp(2rem, 4.5vw, 4rem);
-    padding-block-end: clamp(3.5rem, 6vw, 6rem);
+    padding-block-start: clamp(1rem, 2vw, 2rem);
+    padding-block-end: clamp(1.5rem, 3vw, 3rem);
 }
 
 .contact-hero__container {
@@ -276,7 +276,7 @@
     box-shadow: 0 26px 48px rgba(58, 104, 153, 0.26);
     overflow: hidden;
     color: #f9f7ff;
-    width: min(100%, 700px);
+    width: min(100%, 800px);
     margin: clamp(0.5rem, 2vw, 1.25rem) auto 0;
 }
 
@@ -284,7 +284,7 @@
     .contact-hero__form {
         justify-self: end;
         margin: 0;
-        width: min(100%, 760px);
+        width: min(100%, 860px);
     }
 }
 
@@ -303,8 +303,8 @@
 .contact-hero__form-inner {
     display: grid;
     gap: clamp(1.1rem, 2.6vw, 1.8rem);
-    padding: clamp(1.3rem, 3.6vw, 2rem);
-    padding-bottom: clamp(0.5rem, 2vw, 1rem);
+    padding: clamp(1rem, 2vw, 1.5rem);
+    padding-bottom: clamp(0.5rem, 1.5vw, 1rem);
     height: 100%;
 }
 

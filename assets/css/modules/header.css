@@ -73,6 +73,9 @@
     color: var(--color-title-strong);
     display: block;
     padding-bottom: 0.2rem;
+    background: var(--gradient-crest);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .navbar__title--accent {

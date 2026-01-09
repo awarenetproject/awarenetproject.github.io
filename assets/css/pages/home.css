@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(2.25rem, 10vh, 5.5rem) clamp(1.5rem, 8vw, 6rem);
+    padding: clamp(2.25rem, 10vh, 4rem) clamp(1.5rem, 8vw, 6rem) clamp(1rem, 5vh, 2rem);
     min-height: clamp(26rem, 100vh, 110vh);
     width: min(100vw, 100%);
     max-width: none;
@@ -200,7 +200,8 @@
     max-width: min(520px, 100%);
     display: grid;
     gap: clamp(2rem, 4vw, 3rem);
-    justify-items: start;
+    justify-items: end;
+    text-align: right;
 }
 
 .hero-institutions h1 {
@@ -209,6 +210,7 @@
     margin: 0;
     white-space: normal;
     line-height: 1.35;
+    font-size: calc(clamp(1.83rem, 4.2vw, 2.73rem) - 2pt);
 }
 
 .hero-institutions__content p {
@@ -400,6 +402,7 @@
 
 .section--goals {
     gap: clamp(1.25rem, 2.5vw, 1.75rem);
+    padding-bottom: clamp(1rem, 2vw, 2rem);
 }
 
 .section--goals .section__heading {
@@ -622,7 +625,7 @@
     gap: clamp(1.75rem, 4vw, 2.75rem);
     justify-items: center;
     padding-bottom: clamp(5rem, 12vw, 8rem);
-    padding-top: clamp(2rem, 5vw, 3rem);
+    padding-top: clamp(0.5rem, 1.5vw, 1rem);
 }
 
 .section--cta .section__heading {
