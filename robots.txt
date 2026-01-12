@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://awarenet.org/sitemap.xml

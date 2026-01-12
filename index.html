@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AWARENET</title>
+    <title>AWARENET - Mapping the Neural Architecture of Consciousness</title>
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,15 +14,49 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <meta name="description"
         content="AWARENET maps how the brain generates and organizes consciousness, combining intracranial recordings, brain imaging, and computational modeling.">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://awarenet.org/">
+    <meta property="og:title" content="AWARENET - Mapping the Neural Architecture of Consciousness">
+    <meta property="og:description"
+        content="AWARENET maps how the brain generates and organizes consciousness, combining intracranial recordings, brain imaging, and computational modeling.">
+    <meta property="og:image" content="assets/images/research/brainHuman.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="AWARENET">
+    <meta property="twitter:description" content="Mapping the neural architecture of consciousness.">
+    <meta property="twitter:image" content="assets/images/research/brainHuman.png">
 </head>
 
 <body class="theme-horizon">
-    <site-header base-path="." active-page="home"></site-header>
+    <header class="site-header">
+        <nav class="navbar">
+            <a class="navbar__brand" href="index.html" aria-label="AWARENET">
+                <span class="navbar__logos">
+                    <img class="navbar__partner" src="assets/images/team/uni_icons/cariparo.png"
+                        alt="Fondazione Cariparo logo" width="160" height="44">
+                </span>
+                <span class="navbar__identity">
+                    <span class="navbar__title">AWARENET</span>
+                </span>
+            </a>
+            <button class="navbar__toggle" aria-expanded="false" aria-controls="primary-navigation">☰</button>
+            <ul id="primary-navigation" class="navbar__menu">
+                <li class="navbar__item"><a href="index.html" class="navbar__link navbar__link--active">Home</a></li>
+                <li class="navbar__item"><a href="pages/research.html" class="navbar__link">Research</a></li>
+                <li class="navbar__item"><a href="pages/team.html" class="navbar__link">Team</a></li>
+                <li class="navbar__item"><a href="pages/news.html" class="navbar__link">News</a></li>
+                <li class="navbar__item"><a href="pages/contact.html" class="navbar__link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
         <section class="section section--hero" aria-labelledby="home-title">
             <div class="hero-media" aria-hidden="true">
-                <img src="assets/images/home/brain_gif3.webp" alt="">
+                <img src="assets/images/home/brain_gif3.webp" alt="" width="1920" height="1080" fetchpriority="high">
             </div>
             <div class="hero__inner">
                 <h1 id="home-title">Unravel how<br>the brain sustains<br>consciousness</h1>
@@ -72,7 +106,8 @@
                 <div class="objectives-card__list" role="list">
                     <article class="objective-card__item" role="listitem" aria-labelledby="goal-neuro">
                         <div class="objective-card__icon" aria-hidden="true">
-                            <img src="assets/images/home/goals/brain.jpeg" alt="" loading="lazy">
+                            <img src="assets/images/home/goals/brain.jpeg" alt="" loading="lazy" width="340"
+                                height="340">
                         </div>
                         <div class="objective-card__content">
                             <h3 id="goal-neuro" class="objective-card__title">Awareness Atlas</h3>
@@ -82,7 +117,8 @@
                     </article>
                     <article class="objective-card__item" role="listitem" aria-labelledby="goal-care">
                         <div class="objective-card__icon" aria-hidden="true">
-                            <img src="assets/images/home/goals/predictive.jpg" alt="" loading="lazy">
+                            <img src="assets/images/home/goals/predictive.jpg" alt="" loading="lazy" width="980"
+                                height="980">
                         </div>
                         <div class="objective-card__content">
                             <h3 id="goal-care" class="objective-card__title">Predictive Models</h3>
@@ -91,7 +127,8 @@
                     </article>
                     <article class="objective-card__item" role="listitem" aria-labelledby="goal-insights">
                         <div class="objective-card__icon" aria-hidden="true">
-                            <img src="assets/images/home/goals/doctors.png" alt="" loading="lazy">
+                            <img src="assets/images/home/goals/doctors.png" alt="" loading="lazy" width="229"
+                                height="220">
                         </div>
                         <div class="objective-card__content">
                             <h3 id="goal-insights" class="objective-card__title">Bench to Bedside</h3>

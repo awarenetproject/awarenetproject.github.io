@@ -14,10 +14,44 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
     <meta name="description"
         content="Stay updated with the latest news, events, and research highlights from AWARENET project.">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://awarenet.org/pages/news.html">
+    <meta property="og:title" content="News & Events - AWARENET">
+    <meta property="og:description"
+        content="Stay updated with the latest news, events, and research highlights from AWARENET project.">
+    <meta property="og:image" content="../assets/images/news/conejo_brain_minimal.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="News & Events - AWARENET">
+    <meta property="twitter:description" content="Stay updated with AWARENET news.">
+    <meta property="twitter:image" content="../assets/images/news/conejo_brain_minimal.png">
 </head>
 
 <body class="theme-horizon">
-    <site-header base-path=".." active-page="news"></site-header>
+    <header class="site-header">
+        <nav class="navbar">
+            <a class="navbar__brand" href="../index.html" aria-label="AWARENET">
+                <span class="navbar__logos">
+                    <img class="navbar__partner" src="../assets/images/team/uni_icons/cariparo.png"
+                        alt="Fondazione Cariparo logo" width="160" height="44">
+                </span>
+                <span class="navbar__identity">
+                    <span class="navbar__title">AWARENET</span>
+                </span>
+            </a>
+            <button class="navbar__toggle" aria-expanded="false" aria-controls="primary-navigation">☰</button>
+            <ul id="primary-navigation" class="navbar__menu">
+                <li class="navbar__item"><a href="../index.html" class="navbar__link">Home</a></li>
+                <li class="navbar__item"><a href="research.html" class="navbar__link">Research</a></li>
+                <li class="navbar__item"><a href="team.html" class="navbar__link">Team</a></li>
+                <li class="navbar__item"><a href="news.html" class="navbar__link navbar__link--active">News</a></li>
+                <li class="navbar__item"><a href="contact.html" class="navbar__link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
         <section class="section section--surface highlights" aria-labelledby="news-latest">
@@ -87,7 +121,8 @@
                             </figure>
                             <div class="news-card__content">
                                 <h3 class="news-card__title">
-                                    <a href="../events/conejo-2026.html">CoNeJo: Consciousness - A Neuroscience Journey</a>
+                                    <a href="../events/conejo-2026.html">CoNeJo: Consciousness - A Neuroscience
+                                        Journey</a>
                                 </h3>
                                 <p class="news-card__date news-card__date--upcoming"><strong>25 March 2026</strong></p>
                                 <span class="event-card__divider" aria-hidden="true"></span>
