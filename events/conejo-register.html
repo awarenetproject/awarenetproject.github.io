@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for CoNeJo 2026 | AWARENET</title>
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        .registration-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--surface-color, #ffffff);
+            padding: 2rem;
+            border-radius: var(--radius-lg, 1rem);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--surface-border, #e2e8f0);
+            border-radius: var(--radius-md, 0.5rem);
+            background-color: var(--background-color, #f8fafc);
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color, #3b82f6);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-color, #2563eb);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md, 0.5rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-color-dark, #1d4ed8);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .conditional-section {
+            display: none;
+            padding: 1.5rem;
+            background: var(--background-subtle, #f1f5f9);
+            border-radius: var(--radius-md, 0.5rem);
+            margin-top: 1rem;
+            border-left: 4px solid var(--primary-color, #2563eb);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* Spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        .btn-submit.loading .spinner {
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Success State */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            background: #dcfce7;
+            color: #16a34a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+    </style>
+</head>
+
+<body class="theme-horizon">
+    <site-header base-path=".." active-page="news"></site-header>
+
+    <main>
+        <section class="section section--surface">
+            <div class="section__content section__content--full event-detail">
+                <a class="event-detail__back" href="conejo-2026.html">Back to Event Details</a>
+
+                <h1 class="event-detail__title" style="margin-bottom: 2rem;">Register for CoNeJo 2026</h1>
+
+                <div id="registrationSuccess" class="success-message">
+                    <div class="success-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <h2>Registration Successful!</h2>
+                    <p>Thank you for registering. You will receive a confirmation email shortly.</p>
+                    <a href="../index.html" class="btn-submit"
+                        style="display: inline-block; width: auto; margin-top: 1rem; text-decoration: none;">Back
+                        Home</a>
+                </div>
+
+                <form id="registrationForm" class="registration-form">
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address *</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="position" class="form-label">Position *</label>
+                        <input type="text" id="position" name="position" class="form-input"
+                            placeholder="e.g. PhD Student, Postdoc, PI" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="affiliation" class="form-label">Affiliation / Institution *</label>
+                        <input type="text" id="affiliation" name="affiliation" class="form-input"
+                            placeholder="e.g. University of Padova" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dietary" class="form-label">Dietary Restrictions (Optional)</label>
+                        <input type="text" id="dietary" name="dietary" class="form-input"
+                            placeholder="e.g. Vegetarian, Gluten-free">
+                    </div>
+
+                    <div class="form-group form-checkbox-group">
+                        <input type="checkbox" id="reimbursementCheck" name="reimbursementCheck"
+                            style="width: 20px; height: 20px;">
+                        <label for="reimbursementCheck" class="form-label" style="margin-bottom: 0; cursor: pointer;">I
+                            need to request travel reimbursement</label>
+                    </div>
+
+                    <!-- Hidden Fields for Reimbursement -->
+                    <div id="reimbursementSection" class="conditional-section">
+                        <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.1rem;">Reimbursement Details</h3>
+
+                        <div class="form-group">
+                            <label for="origin" class="form-label">Traveling From (Origin) *</label>
+                            <input type="text" id="origin" name="origin" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cost" class="form-label">Estimated Cost (€) *</label>
+                            <input type="number" id="cost" name="cost" class="form-input" min="0" step="0.01">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="attachment" class="form-label">Attachments (Cost Estimate / Quote) *</label>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.5rem;">Please upload a PDF or
+                                Image of your travel estimate.</p>
+                            <input type="file" id="attachment" name="attachment" class="form-input"
+                                accept=".pdf,.jpg,.jpeg,.png,.zip">
+                        </div>
+                    </div>
+
+                    <div id="formError" class="error-message">Something went wrong. Please try again later.</div>
+
+                    <button type="submit" class="btn-submit">
+                        <span class="spinner"></span>
+                        <span class="btn-text">Submit Registration</span>
+                    </button>
+
+                    <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-secondary); text-align: center;">
+                        Your data is securely processed via Google Forms infrastructure.
+                    </p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <site-footer></site-footer>
+
+    <script src="../assets/js/components/Header.js" type="module"></script>
+    <script src="../assets/js/components/Footer.js" type="module"></script>
+    <script src="../assets/js/registration.js"></script>
+</body>
+
+</html>
