@@ -1,5 +1,5 @@
 // Google Script URL (Placeholder - User will update this)
-const SCRIPT_URL = 'PLACEHOLDER_URL_FROM_SETUP_GUIDE';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwTYLDYh5D9YkATentEPtCjOFCODJGSNvJ-0o5eQIqcM3NWWZH9A_Y8PIDtAF0jNkqN/exec';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('registrationForm');
