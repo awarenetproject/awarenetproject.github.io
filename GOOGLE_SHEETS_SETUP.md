@@ -5,8 +5,8 @@ To make the registration form work, you need to set up a Google Sheet to receive
 ## Step 1: Create the Google Sheet
 1. Go to [Google Sheets](https://sheets.google.com) and create a **New Spreadsheet**.
 2. Name it something clear, like `CoNeJo 2026 Registrations`.
-3. Rename the first tab (at the bottom) to `Registrations`.
-4. Create the **Header Row** (Row 1) with exactly these column names (order matters for clarity, but script scans by name usually, here we align with array):
+3. Rename the firstde tab (at the bottom) to `Registrations`.
+4. Create the **Hear Row** (Row 1) with exactly these column names (order matters for clarity, but script scans by name usually, here we align with array):
    * **A1**: Timestamp
    * **B1**: First Name
    * **C1**: Last Name

@@ -270,14 +270,14 @@
 
 .contact-hero__form {
     position: relative;
-    border-radius: 24px;
+    border-radius: 0;
     background: linear-gradient(140deg, rgba(58, 104, 153, 0.98), rgba(102, 140, 186, 0.92));
     box-shadow: 0 26px 48px rgba(58, 104, 153, 0.26);
     overflow: hidden;
     color: #f9f7ff;
     width: 100%;
-    max-width: 480px;
-    margin: clamp(0.5rem, 2vw, 1.25rem) auto 0;
+    max-width: 320px;
+    margin: 0.5rem auto 0;
 }
 
 @media (min-width: 960px) {
@@ -285,13 +285,13 @@
         justify-self: end;
         margin: 0;
         width: 100%;
-        max-width: 420px;
+        max-width: 320px;
     }
 }
 
 @media (min-width: 1100px) {
     .contact-hero__form {
-        margin-left: clamp(1.4rem, 3.8vw, 3rem);
+        margin-left: clamp(0.5rem, 1.5vw, 1.25rem);
         justify-self: start;
     }
 }
@@ -299,19 +299,21 @@
 .contact-hero__form-inner {
     display: grid;
     gap: clamp(1.1rem, 2.6vw, 1.8rem);
-    padding: clamp(1rem, 2vw, 1.5rem);
-    padding-bottom: clamp(0.5rem, 1.5vw, 1rem);
+    padding: clamp(1.5rem, 2.5vw, 2rem);
+    padding-bottom: clamp(1.5rem, 2vw, 2rem);
     height: 100%;
 }
 
 .contact-hero__form-heading {
     display: grid;
     gap: 0.55rem;
+    align-items: center;
+    text-align: center;
 }
 
 .contact-hero__form-heading h2 {
     margin: 0;
-    font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+    font-size: clamp(1.3rem, 2.2vw, 1.6rem);
     color: #ffffff;
     letter-spacing: -0.01em;
 }
@@ -330,6 +332,7 @@
 
 .contact-form--compact {
     gap: clamp(0.55rem, 1.5vw, 0.85rem);
+    justify-items: center;
 }
 
 @media (min-width: 960px) {
@@ -346,12 +349,14 @@
 
 .contact-form--compact .form-field--full,
 .contact-form--compact button,
+.contact-form--compact .button,
 .contact-form--compact .form-status {
     grid-column: 1 / -1;
 }
 
-.contact-form--compact button {
-    justify-self: flex-start;
+.contact-form--compact button,
+.contact-form--compact .button {
+    justify-self: center;
 }
 
 .contact-form--compact .form-status {
@@ -560,9 +565,9 @@
 }
 
 .contact-page .contact-form .button {
-    width: 100%;
+    width: auto;
     margin-top: 0.4rem;
-    padding: 0.95rem 1.5rem;
+    padding: 0.75rem 2rem;
     border-radius: 999px;
     background: #f6f3fb;
     color: var(--color-primary);
