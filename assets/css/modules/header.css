@@ -26,7 +26,7 @@
     padding: 0.5rem;
     border-radius: 999px;
     transition: transform 0.25s ease;
-    cursor: default;
+    cursor: pointer;
 }
 
 .navbar__brand:focus-visible,
