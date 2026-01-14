@@ -144,3 +144,19 @@
     color: var(--surface-border);
     font-weight: 300;
 }
+
+/* Event CTA Grid */
+.event-cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .event-cta-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
