@@ -38,12 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return isValid;
     }
 
-    // Add blur validation to required fields
+    // Add input validation to clear errors (but don't validate on blur)
     const requiredFields = ['firstName', 'lastName', 'email', 'position', 'affiliation'];
     requiredFields.forEach(fieldId => {
         const field = document.getElementById(fieldId);
         if (field) {
-            field.addEventListener('blur', () => validateField(field));
             field.addEventListener('input', () => {
                 // Clear error on typing
                 const errorSpan = document.getElementById(fieldId + '-error');
@@ -100,7 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Filter institutions based on query
         function findMatches(query) {
             query = query.toLowerCase().trim();
-            if (!query) return [];
+            // If empty query, return top 8 popular/main institutions (Italian universities)
+            if (!query) return INSTITUTIONS.slice(0, 8);
 
             const queryTokens = query.split(/\s+/).filter(t => t.length > 2); // Ignore short words like "of", "di"
 
@@ -132,8 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Allow edits: 1 for short words (4-6), 2 for medium (7-9), 3 for long (>9)
                     const allowedEdits = qToken.length > 9 ? 3 : (qToken.length > 6 ? 2 : 1);
 
-                    if (targetTokens.some(t => Math.abs(t.length - qToken.length) <= allowedEdits && levenshtein(qToken, t) <= allowedEdits)) {
-                        matchedTokensCount++;
+                    try {
+                        if (targetTokens.some(t => Math.abs(t.length - qToken.length) <= allowedEdits && levenshtein(qToken, t) <= allowedEdits)) {
+                            matchedTokensCount++;
+                        }
+                    } catch (e) {
+                        // Fallback for very short tokens or edge cases
                     }
                 }
 
@@ -151,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function renderDropdown(matches) {
             dropdown.innerHTML = '';
+            // Always show if we have matches (default or searched)
             if (matches.length === 0) {
                 dropdown.style.display = 'none';
                 return;
@@ -159,8 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             matches.forEach(inst => {
                 const div = document.createElement('div');
                 div.className = 'autocomplete-item';
-                // Highlight match logic could go here, keeping simple for now
-                div.innerHTML = `<strong>${inst.name}</strong>`;
+                div.textContent = inst.name;
 
                 div.addEventListener('mousedown', (e) => { // mousedown fires before blur
                     e.preventDefault(); // Prevent input blur
@@ -180,11 +184,16 @@ document.addEventListener('DOMContentLoaded', () => {
             renderDropdown(matches);
         });
 
+        // Show default list on focus
         affiliationInput.addEventListener('focus', () => {
-            if (affiliationInput.value.trim().length > 0) {
-                const matches = findMatches(affiliationInput.value);
-                renderDropdown(matches);
-            }
+            const matches = findMatches(affiliationInput.value);
+            renderDropdown(matches);
+        });
+
+        // Show default list on click (if already focused but closed)
+        affiliationInput.addEventListener('click', () => {
+            const matches = findMatches(affiliationInput.value);
+            renderDropdown(matches);
         });
 
         affiliationInput.addEventListener('blur', () => {
