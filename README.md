@@ -70,3 +70,5 @@ The repository includes a GitHub Actions workflow (`.github/workflows/deploy.yml
 1. Go to **Settings → Pages** in the GitHub repository.
 2. Select **GitHub Actions** as the publication source.
 3. Every push to `main` will trigger the pipeline that updates the public site.
+
+**Deployment URL:** [https://awarenetproject.github.io](https://awarenetproject.github.io)
