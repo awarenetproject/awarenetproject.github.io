@@ -98,13 +98,21 @@ main {
     padding: 0 0 clamp(2rem, 6vw, 4rem);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .section {
-        padding: 4rem 1.25rem;
+        padding: 3rem 1.25rem;
+        gap: 1.5rem;
+        /* Ensure single column layout on mobile unless specifically overridden */
+        grid-template-columns: 100%;
     }
 
     .section--surface,
     .section--muted {
-        padding: 4rem 1.5rem;
+        padding: 3.5rem 1.25rem;
+    }
+
+    main {
+        gap: 3rem;
+        padding-bottom: 3rem;
     }
 }

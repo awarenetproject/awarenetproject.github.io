@@ -58,7 +58,7 @@
 /* Event Meta Grid (Legacy/Alternative) */
 .event-meta-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1.5rem;
     background: rgba(245, 246, 255, 0.5);
     border: 1px solid var(--surface-border);
