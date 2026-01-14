@@ -70,6 +70,136 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- INTELLIGENT AUTOCOMPLETE LOGIC ---
+    const affiliationInput = document.getElementById('affiliation');
+    const dropdown = document.getElementById('affiliation-dropdown');
+
+    if (affiliationInput && dropdown && typeof INSTITUTIONS !== 'undefined') {
+
+        // Levenshtein distance for fuzzy matching
+        function levenshtein(a, b) {
+            const matrix = [];
+            for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+            for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+
+            for (let i = 1; i <= b.length; i++) {
+                for (let j = 1; j <= a.length; j++) {
+                    if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1, // substitution
+                            Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1) // insertion/deletion
+                        );
+                    }
+                }
+            }
+            return matrix[b.length][a.length];
+        }
+
+        // Filter institutions based on query
+        function findMatches(query) {
+            query = query.toLowerCase().trim();
+            if (!query) return [];
+
+            const queryTokens = query.split(/\s+/).filter(t => t.length > 2); // Ignore short words like "of", "di"
+
+            return INSTITUTIONS.filter(inst => {
+                const nameLower = inst.name.toLowerCase();
+
+                // 1. Exact/Start substring match of full query (High Priority)
+                if (nameLower.includes(query)) return true;
+                if (inst.keywords.some(k => k.toLowerCase().includes(query))) return true;
+
+                // 2. Token-based Fuzzy Match
+                // For "Univdeersry of Padova", tokens are "Univdeersry", "Padova"
+                // We want at least one significant token to match strongly, OR all tokens to match somewhat
+
+                // Collect all target tokens (name words + keywords)
+                const targetTokens = [...inst.name.toLowerCase().split(/\s+/), ...inst.keywords.map(k => k.toLowerCase())];
+
+                // Count how many query tokens find a match
+                let matchedTokensCount = 0;
+
+                for (const qToken of queryTokens) {
+                    // Exact match on token
+                    if (targetTokens.some(t => t.includes(qToken))) {
+                        matchedTokensCount++;
+                        continue;
+                    }
+
+                    // Fuzzy match on token
+                    // Allow edits: 1 for short words (4-6), 2 for medium (7-9), 3 for long (>9)
+                    const allowedEdits = qToken.length > 9 ? 3 : (qToken.length > 6 ? 2 : 1);
+
+                    if (targetTokens.some(t => Math.abs(t.length - qToken.length) <= allowedEdits && levenshtein(qToken, t) <= allowedEdits)) {
+                        matchedTokensCount++;
+                    }
+                }
+
+                // If we have query tokens, we need at least one strong match or majority matches
+                if (queryTokens.length > 0) {
+                    // If just 1 token, it must match
+                    if (queryTokens.length === 1) return matchedTokensCount === 1;
+                    // If multiple, require at least 50% matching (e.g. "Univ of Padova" -> "Univ" (maybe), "Padova" (yes) -> 2/3 or 1/2)
+                    return matchedTokensCount >= Math.ceil(queryTokens.length / 2);
+                }
+
+                return false;
+            }).slice(0, 8); // Slightly increased limit
+        }
+
+        function renderDropdown(matches) {
+            dropdown.innerHTML = '';
+            if (matches.length === 0) {
+                dropdown.style.display = 'none';
+                return;
+            }
+
+            matches.forEach(inst => {
+                const div = document.createElement('div');
+                div.className = 'autocomplete-item';
+                // Highlight match logic could go here, keeping simple for now
+                div.innerHTML = `<strong>${inst.name}</strong>`;
+
+                div.addEventListener('mousedown', (e) => { // mousedown fires before blur
+                    e.preventDefault(); // Prevent input blur
+                    affiliationInput.value = inst.name;
+                    dropdown.style.display = 'none';
+                    // Re-validate field immediately
+                    validateField(affiliationInput);
+                });
+
+                dropdown.appendChild(div);
+            });
+            dropdown.style.display = 'block';
+        }
+
+        affiliationInput.addEventListener('input', () => {
+            const matches = findMatches(affiliationInput.value);
+            renderDropdown(matches);
+        });
+
+        affiliationInput.addEventListener('focus', () => {
+            if (affiliationInput.value.trim().length > 0) {
+                const matches = findMatches(affiliationInput.value);
+                renderDropdown(matches);
+            }
+        });
+
+        affiliationInput.addEventListener('blur', () => {
+            // Delay hiding to allow click event to register
+            setTimeout(() => {
+                dropdown.style.display = 'none';
+            }, 200);
+        });
+
+        // Close on escape
+        affiliationInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') dropdown.style.display = 'none';
+        });
+    }
+
     // Toggle Reimbursement Section
     reimbursementCheck.addEventListener('change', (e) => {
         if (e.target.checked) {
