@@ -1,70 +1,70 @@
 # AWARENET Website
 
-Sito web statico multipagina pensato per presentare il network AWARENET, le sue attività di ricerca e i partner coinvolti.
+Static multi-page website designed to present the AWARENET network, its research activities, and involved partners.
 
-## Struttura del progetto
+## Project Structure
 
 ```
 .
-├── index.html               # Home page (punto di ingresso)
-├── pages                    # Pagine principali del sito
+├── index.html               # Home page (entry point)
+├── pages                    # Main site pages
 │   ├── research.html
 │   ├── team.html
 │   ├── news.html
 │   └── contact.html
-├── events                   # Pagine di dettaglio eventi
-│   ├── event-template.html  # Template per nuovi eventi
+├── events                   # Event detail pages
+│   ├── event-template.html  # Template for new events
 │   ├── conejo-2026.html
 │   └── retreat-2025.html
 ├── assets
 │   ├── css
-│   │   ├── styles.css       # File principale (importa i moduli)
-│   │   ├── modules/         # CSS base, layout, componenti
-│   │   └── pages/           # CSS specifico per pagina
+│   │   ├── styles.css       # Main file (imports modules)
+│   │   ├── modules/         # Base CSS, layout, components
+│   │   └── pages/           # Page-specific CSS
 │   ├── js
-│   │   ├── main.js          # Script globali
+│   │   ├── main.js          # Global scripts
 │   │   └── components/      # Web Components (Header.js, Footer.js)
-│   └── images               # Immagini, loghi, icone
+│   └── images               # Images, logos, icons
 └── README.md
 ```
 
-## Pagine disponibili
+## Available Pages
 
-- **Home (`index.html`)** – Hero principale, link alle sezioni.
-- **Pagine (`pages/*.html`)** – Research, Team, News, Contact sono ora raccolte nella cartella `pages`.
-- **Eventi (`events/*.html`)** – Le pagine dei singoli eventi si trovano nella cartella `events`. Usa `event-template.html` come base per crearne di nuove.
+- **Home (`index.html`)** – Main hero, links to sections.
+- **Pages (`pages/*.html`)** – Research, Team, News, Contact are now collected in the `pages` folder.
+- **Events (`events/*.html`)** – Single event pages are located in the `events` folder. Use `event-template.html` as a base to create new ones.
 
-Tutte le pagine condividono la stessa barra di navigazione responsive (Web Component `<site-header>`) e il footer (`<site-footer>`).
+All pages share the same responsive navigation bar (Web Component `<site-header>`) and footer (`<site-footer>`).
 
-## Stili e risorse condivise
+## Shared Styles and Resources
 
-- `assets/css/styles.css` è il file entry-point che importa i moduli da `assets/css/modules/` e `assets/css/pages/`.
-- `assets/js/components/` contiene i Web Components per Header e Footer.
-- Le sottocartelle di `assets/images` raccolgono segnaposto (es. `placeholders/`) e icone social (`social/`).
+- `assets/css/styles.css` is the entry-point file that imports modules from `assets/css/modules/` and `assets/css/pages/`.
+- `assets/js/components/` contains the Web Components for Header and Footer.
+- `assets/images` subfolders collect placeholders (e.g., `placeholders/`) and social icons (`social/`).
 
-## Personalizzazione rapida
+## Rapid Customization
 
-1. **Logo e identità** – aggiorna l'immagine in `assets/js/components/Header.js`.
-2. **Contenuti** – modifica testi direttamente nei file HTML.
-3. **Eventi** – duplica `events/event-template.html` per creare nuove pagine evento e aggiungi il link in `pages/news.html`.
-4. **Immagini del team** – carica le foto in `assets/photos_team`.
+1. **Logo and identity** – update the image in `assets/js/components/Header.js`.
+2. **Content** – edit texts directly in the HTML files.
+3. **Events** – duplicate `events/event-template.html` to create new event pages and add the link in `pages/news.html`.
+4. **Team images** – upload photos to `assets/photos_team`.
 
-## Anteprima locale
+## Local Preview
 
-Dato che il sito utilizza **Web Components** in moduli JavaScript, **non è possibile aprire semplicemente i file HTML** nel browser (l'header e il footer non verrebbero caricati per motivi di sicurezza CORS).
+Since the site uses **Web Components** in JavaScript modules, **you cannot simply open HTML files** in the browser (the header and footer would not load due to CORS security reasons).
 
-Per visualizzare il sito in locale:
+To view the site locally:
 
 ```bash
 python3 -m http.server
 ```
 
-Visitando `http://localhost:8000` potrai navigare tutte le pagine correttamente.
+By visiting `http://localhost:8000` you will be able to navigate all pages correctly.
 
-## Pubblicazione su GitHub Pages
+## GitHub Pages Deployment
 
-Il repository include un workflow GitHub Actions (`.github/workflows/deploy.yml`) che pubblica automaticamente il sito come GitHub Page.
+The repository includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that automatically publishes the site as a GitHub Page.
 
-1. Vai su **Settings → Pages** nel repository GitHub.
-2. Seleziona **GitHub Actions** come sorgente di pubblicazione.
-3. Ogni push su `main` farà partire la pipeline che aggiornerà il sito pubblico.
+1. Go to **Settings → Pages** in the GitHub repository.
+2. Select **GitHub Actions** as the publication source.
+3. Every push to `main` will trigger the pipeline that updates the public site.
