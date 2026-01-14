@@ -2,6 +2,8 @@
 
 Static multi-page website designed to present the AWARENET network, its research activities, and involved partners.
 
+**Live Website:** [https://awarenetproject.github.io](https://awarenetproject.github.io)
+
 ## Project Structure
 
 ```

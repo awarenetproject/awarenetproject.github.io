@@ -14,6 +14,7 @@ This document contains **project-specific configurations and constraints** for t
 
 `/Users/emmatosato/Documents/PhD/PhD Local Projects/awarenet_web/`
 
+- **Website (live):** https://awarenetproject.github.io
 - **Website (local):** http://localhost:8000
 
 - **Purpose:** Web page development
