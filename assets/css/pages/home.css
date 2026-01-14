@@ -394,11 +394,52 @@
 
 @media (max-width: 900px) {
     .section--hero {
-        padding: clamp(2.75rem, 14vw, 4.5rem) clamp(1.25rem, 6vw, 2.5rem);
+        padding: clamp(6rem, 14vw, 4.5rem) 1.25rem 3rem;
+        /* More top padding for fixed header */
+        align-items: flex-start;
+        /* Move content up slightly */
     }
 
     .hero__inner {
-        width: min(95vw, 640px);
+        width: 100%;
+        text-align: center;
+        justify-items: center;
+    }
+
+    .section--hero h1 {
+        font-size: 2.5rem;
+        /* Larger fixed size for impact */
+    }
+
+    .section--hero p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Stack Institutions Layout */
+    .hero-institutions__layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 0 1rem;
+        text-align: center;
+        justify-items: center;
+    }
+
+    .hero-institutions__content {
+        justify-items: center;
+        text-align: center;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .hero-institutions h1 {
+        font-size: 2.1rem;
+    }
+
+    .hero-institutions__logos {
+        margin: 0;
+        transform: none;
+        width: 100%;
     }
 }
 
