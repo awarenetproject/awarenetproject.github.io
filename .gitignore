@@ -32,3 +32,7 @@ ENV/
 .pytype/
 .dmypy.json
 .pyre/
+
+# System and Logs
+.DS_Store
+logs/

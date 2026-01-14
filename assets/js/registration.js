@@ -6,6 +6,70 @@ document.addEventListener('DOMContentLoaded', () => {
     const reimbursementCheck = document.getElementById('reimbursementCheck');
     const reimbursementSection = document.getElementById('reimbursementSection');
 
+    // Field validation function
+    function validateField(input) {
+        const errorSpan = document.getElementById(input.id + '-error');
+        if (!errorSpan) return true;
+
+        let isValid = true;
+        let errorMessage = '';
+
+        if (input.required && !input.value.trim()) {
+            isValid = false;
+            errorMessage = 'This field must be completed';
+        } else if (input.type === 'email' && input.value.trim()) {
+            // Check email format - must have @ and at least one dot after @
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(input.value) || !input.value.includes('.')) {
+                isValid = false;
+                errorMessage = 'The email is incorrect (must contain @ and .)';
+            }
+        }
+
+        if (isValid) {
+            errorSpan.style.display = 'none';
+            input.classList.remove('invalid');
+        } else {
+            errorSpan.textContent = errorMessage;
+            errorSpan.style.display = 'block';
+            input.classList.add('invalid');
+        }
+
+        return isValid;
+    }
+
+    // Add blur validation to required fields
+    const requiredFields = ['firstName', 'lastName', 'email', 'position', 'affiliation'];
+    requiredFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            field.addEventListener('blur', () => validateField(field));
+            field.addEventListener('input', () => {
+                // Clear error on typing
+                const errorSpan = document.getElementById(fieldId + '-error');
+                if (errorSpan && field.value.trim()) {
+                    errorSpan.style.display = 'none';
+                    field.classList.remove('invalid');
+                }
+            });
+        }
+    });
+
+    // Custom file input - update filename display
+    const attachmentInput = document.getElementById('attachment');
+    const fileNameDisplay = document.getElementById('file-name');
+    if (attachmentInput && fileNameDisplay) {
+        attachmentInput.addEventListener('change', () => {
+            if (attachmentInput.files.length > 0) {
+                fileNameDisplay.textContent = attachmentInput.files[0].name;
+                fileNameDisplay.style.color = 'var(--text-primary)';
+            } else {
+                fileNameDisplay.textContent = 'No file selected';
+                fileNameDisplay.style.color = '#64748b';
+            }
+        });
+    }
+
     // Toggle Reimbursement Section
     reimbursementCheck.addEventListener('change', (e) => {
         if (e.target.checked) {
@@ -24,6 +88,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle Form Submission
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Validate all required fields first
+        let allValid = true;
+        requiredFields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field && !validateField(field)) {
+                allValid = false;
+            }
+        });
+
+        if (!allValid) {
+            // Find first invalid field and scroll to it
+            const firstInvalid = document.querySelector('.form-input.invalid');
+            if (firstInvalid) {
+                firstInvalid.focus();
+            }
+            return;
+        }
 
         // Validation check for user config
         if (SCRIPT_URL === 'PLACEHOLDER_URL_FROM_SETUP_GUIDE') {

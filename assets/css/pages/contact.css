@@ -129,7 +129,7 @@
 @media (min-width: 1100px) {
     .contact-hero__container {
         grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-        align-items: center;
+        align-items: start;
     }
 
     .contact-hero__header {
@@ -146,7 +146,7 @@
     }
 
     .contact-hero__form {
-        align-self: stretch;
+        align-self: start;
     }
 }
 
@@ -269,30 +269,66 @@
 }
 
 .contact-hero__form {
-    position: relative;
-    border-radius: 0;
-    background: linear-gradient(140deg, rgba(58, 104, 153, 0.98), rgba(102, 140, 186, 0.92));
-    box-shadow: 0 26px 48px rgba(58, 104, 153, 0.26);
-    overflow: hidden;
-    color: #f9f7ff;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
     width: 100%;
-    max-width: 320px;
-    margin: 0.5rem auto 0;
+    margin: 0;
+
+    /* Base adjustments can go here if needed */
 }
+
+.button--contact-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 2.75rem;
+    background: linear-gradient(140deg, rgba(58, 104, 153, 0.98), rgba(102, 140, 186, 0.92));
+    color: #ffffff;
+    font-weight: 600;
+    font-size: clamp(1rem, 1.9vw, 1.18rem);
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 14px 28px rgba(58, 104, 153, 0.28);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+
+.button--contact-cta:hover,
+.button--contact-cta:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 36px rgba(58, 104, 153, 0.32);
+    background: linear-gradient(140deg, rgba(58, 104, 153, 1), rgba(102, 140, 186, 0.98));
+}
+
+/* ================================================================
+   POSIZIONE BOTTONE "SEND US A MESSAGE" (DESKTOP)
+   ================================================================
+   Usa 'transform: translate(X, Y)' per spostare il bottone.
+   
+   X: Orizzontale (positivo = DESTRA, negativo = SINISTRA)
+   Y: Verticale   (positivo = GIÙ,    negativo = SU)
+   
+   Esempio: transform: translate(5rem, 10rem); → 5rem a destra, 10rem in basso
+   ================================================================ */
 
 @media (min-width: 960px) {
     .contact-hero__form {
-        justify-self: end;
-        margin: 0;
-        width: 100%;
-        max-width: 320px;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 0;
+
+        /* Modifica QUI i valori per spostare il bottone */
+        transform: translate(4rem, 14rem);
     }
 }
 
 @media (min-width: 1100px) {
     .contact-hero__form {
-        margin-left: clamp(0.5rem, 1.5vw, 1.25rem);
-        justify-self: start;
+        /* Adattamento per schermi più grandi */
+        transform: translate(4rem, 14rem);
     }
 }
 
@@ -435,7 +471,7 @@
 
 .organization-select input[data-organization-input] {
     flex: 1;
-    padding-right: 2.5rem;
+    padding-right: 0rem;
 }
 
 .organization-select__toggle {

@@ -27,11 +27,12 @@ To make the registration form work, you need to set up a Google Sheet to receive
 
 ```javascript
 /* 
-  CONFIGURATION 
-  - Change FOLDER_NAME if you want attachments stored elsewhere.
+  CONFIGURATION - CoNeJo 2026 Registration Backend
+  Spreadsheet ID configured for: CoNeJo 2026 Registrations (Update this if needed)
 */
 const CONFIG = {
-  FOLDER_NAME: "CoNeJo_Receipts", // Folder in Drive where uploads go
+  SPREADSHEET_ID: "1-No9wPRUgJE5qmTpwGdpSlKhqaeTx5g_UpQNNfKNVuc", 
+  FOLDER_NAME: "CoNeJo_Receipts",
   SHEET_NAME: "Registrations"
 };
 
@@ -40,11 +41,11 @@ function doPost(e) {
   lock.tryLock(10000);
 
   try {
-    const doc = SpreadsheetApp.getActiveSpreadsheet();
+    // Open Spreadsheet by ID
+    const doc = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
     const sheet = doc.getSheetByName(CONFIG.SHEET_NAME);
 
-    // Parse data. The frontend sends JSON text/plain to avoid CORS issues sometimes, 
-    // so we parse postData.contents.
+    // Parse Frontend Data
     const rawData = e.postData.contents;
     const data = JSON.parse(rawData);
 
@@ -54,24 +55,44 @@ function doPost(e) {
       fileUrl = saveFileToDrive(data.fileContent, data.fileName, data.mimeType, data.email);
     }
 
-    // Prepare Row Data (adjust order to match your Sheet Step 1)
-    // [Timestamp, First, Last, Email, Position, Affiliation, Dietary, Reimbursement?, Origin, Cost, File]
+    // Prepare Row Data with Explicit Column Mapping
+    // -----------------------------------------------------------
     const nextRow = sheet.getLastRow() + 1;
     const newRow = [
-      new Date(), 
-      data.firstName, 
-      data.lastName, 
-      data.email, 
-      data.position,
-      data.affiliation,
-      data.dietary || "",
-      data.needsReimbursement ? "YES" : "NO",
-      data.origin || "",
-      data.cost || "",
-      fileUrl
+      new Date(),                         // Col A: Timestamp
+      data.firstName,                     // Col B: First Name
+      data.lastName,                      // Col C: Last Name
+      data.email,                         // Col D: Email
+      data.position,                      // Col E: Position
+      data.affiliation,                   // Col F: Affiliation
+      data.dietary || "",                 // Col G: Dietary
+      data.needsReimbursement ? "YES":"NO",// Col H: Reimbursement?
+      data.origin || "",                  // Col I: Traveling From (Origin)
+      data.cost || "",                    // Col J: Estimated Cost
+      fileUrl                             // Col K: File URL
     ];
+    // -----------------------------------------------------------
 
     sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow]);
+
+    // Send Confirmation Email
+    try {
+      const emailBody = "Dear " + data.firstName + ",\n\n" +
+        "Thank you for registering for CoNeJo: Consciousness - A Neuroscience Journey.\n\n" +
+        "Event Details:\n" +
+        "Date: March 25, 2026\n" +
+        "Time: 10:00 - 16:00\n" +
+        "Venue: Fondazione Ricerca Biomedica Avanzata VIMM\n" +
+        "       Via Giuseppe Orus 2, Seminar Room, Padova, Italy\n\n" +
+        (data.needsReimbursement ? "Travel Reimbursement: Requested (from " + data.origin + ", €" + data.cost + ")\n\n" : "") +
+        "We look forward to seeing you!\n\n" +
+        "Best regards,\n" +
+        "The AWARENET Team";
+      
+      MailApp.sendEmail(data.email, "Registration Confirmed - CoNeJo 2026", emailBody);
+    } catch(emailError) {
+      console.log("Email send error: " + emailError);
+    }
 
     return ContentService
       .createTextOutput(JSON.stringify({ "status": "success", "message": "Row added" }))
@@ -88,10 +109,9 @@ function doPost(e) {
 
 function saveFileToDrive(base64Content, fileName, mimeType, userEmail) {
   try {
-    // Decode
     const blob = Utilities.newBlob(Utilities.base64Decode(base64Content), mimeType, fileName);
     
-    // Find or Create Folder
+    // Check if folder exists or create it
     const folders = DriveApp.getFoldersByName(CONFIG.FOLDER_NAME);
     let folder;
     if (folders.hasNext()) {
@@ -100,13 +120,10 @@ function saveFileToDrive(base64Content, fileName, mimeType, userEmail) {
       folder = DriveApp.createFolder(CONFIG.FOLDER_NAME);
     }
     
-    // Create file
-    // Prefix filename with email for safety
     const safeName = `${userEmail}_${fileName}`;
     blob.setName(safeName);
     const file = folder.createFile(blob);
     
-    // Return URL
     return file.getUrl();
   } catch (e) {
     return "Error saving file: " + e.toString();
