@@ -4,7 +4,6 @@ const INSTITUTIONS = [
     { name: "Sapienza University of Rome", keywords: ["uniroma1", "sapienza", "rome", "roma", "lazio"] },
     { name: "University of Bologna", keywords: ["unibo", "bologna", "alma mater"] },
     { name: "University of Milan", keywords: ["unimi", "milan", "milano", "statale"] },
-    { name: "University of Milan-Bicocca", keywords: ["unimib", "bicocca", "milan", "milano"] },
     { name: "Politecnico di Milano", keywords: ["polimi", "milan", "milano", "polytechnic"] },
     { name: "University of Naples Federico II", keywords: ["unina", "naples", "napoli", "federico"] },
     { name: "University of Turin", keywords: ["unito", "turin", "torino"] },

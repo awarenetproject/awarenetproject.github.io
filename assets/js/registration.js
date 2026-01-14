@@ -99,8 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Filter institutions based on query
         function findMatches(query) {
             query = query.toLowerCase().trim();
-            // If empty query, return top 8 popular/main institutions (Italian universities)
-            if (!query) return INSTITUTIONS.slice(0, 8);
+            // If empty query, return ALL institutions
+            if (!query) return INSTITUTIONS;
 
             const queryTokens = query.split(/\s+/).filter(t => t.length > 2); // Ignore short words like "of", "di"
 
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 return false;
-            }).slice(0, 8); // Slightly increased limit
+            }).slice(0, 15); // Increased limit for search results
         }
 
         function renderDropdown(matches) {
@@ -195,6 +195,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const matches = findMatches(affiliationInput.value);
             renderDropdown(matches);
         });
+
+        // Handle clicks on the chevron (container ::after)
+        const container = document.querySelector('.autocomplete-container');
+        if (container) {
+            container.addEventListener('click', (e) => {
+                // If click is on the container (and not bubbled from input), focus input
+                // This covers clicking the chevron since it's part of the container visually/structurally
+                if (e.target !== affiliationInput) {
+                    affiliationInput.focus();
+                    const matches = findMatches(affiliationInput.value);
+                    renderDropdown(matches);
+                }
+            });
+        }
 
         affiliationInput.addEventListener('blur', () => {
             // Delay hiding to allow click event to register
