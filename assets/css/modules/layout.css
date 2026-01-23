@@ -100,7 +100,7 @@ main {
 
 @media (max-width: 768px) {
     .section {
-        padding: 3rem 1.25rem;
+        padding: 2rem 1.25rem;
         gap: 1.5rem;
         /* Ensure single column layout on mobile unless specifically overridden */
         grid-template-columns: 100%;
@@ -108,7 +108,7 @@ main {
 
     .section--surface,
     .section--muted {
-        padding: 3.5rem 1.25rem;
+        padding: 2rem 1.25rem;
     }
 
     main {
