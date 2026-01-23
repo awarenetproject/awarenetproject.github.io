@@ -43,15 +43,19 @@
 
 .highlight-card__media {
     margin: 0;
-    background: linear-gradient(135deg, rgba(58, 104, 153, 0.35), rgba(160, 122, 167, 0.5));
+    background: #ffffff;
     aspect-ratio: 16 / 9;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
 }
 
 .highlight-card__media img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
 }
 
@@ -188,18 +192,19 @@
     aspect-ratio: 3 / 2;
     border-radius: 0;
     overflow: hidden;
-    background: var(--card-fill);
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
     margin: 0;
+    padding: 1rem;
 }
 
 .news-card__media img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
 }
 
