@@ -3,8 +3,6 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyE4bpbGaOQyL4Un8nML
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('registrationForm');
-    const reimbursementCheck = document.getElementById('reimbursementCheck');
-    const reimbursementSection = document.getElementById('reimbursementSection');
 
     // Field validation function
     function validateField(input) {
@@ -14,7 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let isValid = true;
         let errorMessage = '';
 
-        if (input.required && !input.value.trim()) {
+        if (input.type === 'checkbox') {
+            // Checkbox validation (e.g., privacy consent)
+            if (input.required && !input.checked) {
+                isValid = false;
+                errorMessage = 'You must accept the privacy policy to register';
+            }
+        } else if (input.required && !input.value.trim()) {
             isValid = false;
             errorMessage = 'This field must be completed';
         } else if (input.type === 'email' && input.value.trim()) {
@@ -23,6 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!emailRegex.test(input.value) || !input.value.includes('.')) {
                 isValid = false;
                 errorMessage = 'The email is incorrect (must contain @ and .)';
+            }
+        } else if (input.id === 'affiliation' && input.value.trim()) {
+            // Strict validation: affiliation must match exactly one from the list
+            if (typeof INSTITUTIONS !== 'undefined') {
+                const valueToCheck = input.value.trim();
+                const isInList = INSTITUTIONS.some(inst => inst.name === valueToCheck);
+                
+                if (!isInList) {
+                    isValid = false;
+                    errorMessage = 'This field must be completed with the selection of an institution from the dropdown. If yours is not listed, please select "Other"';
+                }
             }
         }
 
@@ -39,35 +54,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Add input validation to clear errors (but don't validate on blur)
-    const requiredFields = ['firstName', 'lastName', 'email', 'position', 'affiliation'];
+    const requiredFields = ['firstName', 'lastName', 'email', 'affiliation', 'privacyConsent'];
     requiredFields.forEach(fieldId => {
         const field = document.getElementById(fieldId);
         if (field) {
-            field.addEventListener('input', () => {
-                // Clear error on typing
+            // For checkbox, listen to 'change' event
+            const eventType = field.type === 'checkbox' ? 'change' : 'input';
+            
+            field.addEventListener(eventType, () => {
+                // Clear error on typing/checking
                 const errorSpan = document.getElementById(fieldId + '-error');
-                if (errorSpan && field.value.trim()) {
-                    errorSpan.style.display = 'none';
-                    field.classList.remove('invalid');
+                if (errorSpan) {
+                    if (field.type === 'checkbox') {
+                        if (field.checked) {
+                            errorSpan.style.display = 'none';
+                            field.classList.remove('invalid');
+                        }
+                    } else if (field.value.trim()) {
+                        errorSpan.style.display = 'none';
+                        field.classList.remove('invalid');
+                    }
                 }
             });
         }
     });
-
-    // Custom file input - update filename display
-    const attachmentInput = document.getElementById('attachment');
-    const fileNameDisplay = document.getElementById('file-name');
-    if (attachmentInput && fileNameDisplay) {
-        attachmentInput.addEventListener('change', () => {
-            if (attachmentInput.files.length > 0) {
-                fileNameDisplay.textContent = attachmentInput.files[0].name;
-                fileNameDisplay.style.color = 'var(--text-primary)';
-            } else {
-                fileNameDisplay.textContent = 'No file selected';
-                fileNameDisplay.style.color = '#64748b';
-            }
-        });
-    }
 
     // --- INTELLIGENT AUTOCOMPLETE LOGIC ---
     const affiliationInput = document.getElementById('affiliation');
@@ -223,21 +233,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Toggle Reimbursement Section
-    reimbursementCheck.addEventListener('change', (e) => {
-        if (e.target.checked) {
-            reimbursementSection.style.display = 'block';
-            document.getElementById('origin').required = true;
-            document.getElementById('cost').required = true;
-            document.getElementById('attachment').required = true;
-        } else {
-            reimbursementSection.style.display = 'none';
-            document.getElementById('origin').required = false;
-            document.getElementById('cost').required = false;
-            document.getElementById('attachment').required = false;
-        }
-    });
-
     // Handle Form Submission
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -281,23 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Collect Data
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
-            data.needsReimbursement = reimbursementCheck.checked;
-
-            // Handle File Upload if present
-            if (data.attachment && data.attachment.size > 0 && reimbursementCheck.checked) {
-                try {
-                    const fileData = await readFileAsBase64(data.attachment);
-                    data.fileContent = fileData.content;
-                    data.fileName = fileData.name;
-                    data.mimeType = fileData.type;
-                } catch (fileError) {
-                    console.error('File read error:', fileError);
-                    throw new Error('Failed to process the uploaded file.');
-                }
-            } else {
-                // Remove file object if not used/empty to avoid serialization issues
-                delete data.attachment;
-            }
 
             // Send to Google Script
             // We use 'no-cors' mode initially usually, but for JSON response we need cors allowed in script
@@ -333,24 +311,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-// Helper: Read file as Base64
-function readFileAsBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-            const result = reader.result;
-            // result is like "data:application/pdf;base64,JVBERi0xLjQK..."
-            // We need to split header if we just want raw base64, but keeping it full is fine for script parsing
-            // Let's send pure base64 part
-            const content = result.split(',')[1];
-            resolve({
-                name: file.name,
-                type: file.type,
-                content: content
-            });
-        };
-        reader.onerror = error => reject(error);
-        reader.readAsDataURL(file);
-    });
-}

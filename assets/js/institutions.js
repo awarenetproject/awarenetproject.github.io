@@ -1,4 +1,7 @@
 const INSTITUTIONS = [
+    // --- DEFAULT OPTION ---
+    { name: "Other", keywords: ["other", "altro", "others"] },
+    
     // --- ITALY ---
     { name: "University of Padova", keywords: ["unipd", "padova", "padua", "veneto"] },
     { name: "Sapienza University of Rome", keywords: ["uniroma1", "sapienza", "rome", "roma", "lazio"] },
@@ -60,7 +63,6 @@ const INSTITUTIONS = [
     { name: "Sorbonne University", keywords: ["sorbonne", "paris", "france"] },
     { name: "Paris Saclay University", keywords: ["saclay", "paris", "france"] },
     { name: "Institut Pasteur", keywords: ["pasteur", "paris", "france"] },
-    { name: "CNRS", keywords: ["cnrs", "france", "research"] },
     // Switzerland
     { name: "ETH Zurich", keywords: ["eth", "zurich", "switzerland", "swiss"] },
     { name: "EPFL", keywords: ["epfl", "lausanne", "switzerland", "swiss"] },

@@ -228,7 +228,22 @@
         .autocomplete-item.focused {
             background-color: var(--surface-raised);
         }
-    </style>
+        @media (max-width: 600px) { 
+            .registration-form { 
+                padding: 1.25rem 1rem; 
+                width: 100%; 
+                border-radius: 0.75rem; 
+                box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
+            } 
+            .section { 
+                padding-top: 1.5rem !important; 
+                padding-bottom: 2rem !important; 
+            } 
+            .event-detail__title { 
+                font-size: 1.5rem !important; 
+                margin-bottom: 1.5rem !important; 
+            } 
+        }    </style>
 </head>
 
 <body class="theme-horizon">
@@ -274,70 +289,37 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="position" class="form-label">Position *</label>
-                        <input type="text" id="position" name="position" class="form-input"
-                            placeholder="e.g. PhD Student, Postdoc, PI" required>
-                        <span class="field-error" id="position-error">This field must be completed</span>
-                    </div>
-
-                    <div class="form-group">
                         <label for="affiliation" class="form-label">Affiliation / Institution *</label>
                         <div class="autocomplete-container">
                             <input type="text" id="affiliation" name="affiliation" class="form-input"
-                                placeholder="e.g. University of Padova" autocomplete="off" required>
+                                placeholder="Start typing or click to see options. If yours is not listed, please select &quot;Other&quot;" autocomplete="off" required>
                             <div id="affiliation-dropdown" class="autocomplete-dropdown"></div>
                         </div>
-                        <span class="field-error" id="affiliation-error">This field must be completed</span>
+                        <span class="field-error" id="affiliation-error">This field must be completed with the selection of an institution from the dropdown. If yours is not listed, please select "Other"</span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="dietary" class="form-label">Dietary Restrictions</label>
-                        <input type="text" id="dietary" name="dietary" class="form-input"
-                            placeholder="e.g. Vegetarian, Gluten-free">
+                    <div class="form-group form-checkbox-group" style="align-items: flex-start; margin-bottom: 1rem; margin-top: 2rem;">
+                        <input type="checkbox" id="privacyConsent" name="privacyConsent" 
+                            style="width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0;" required>
+                        <label for="privacyConsent" class="form-label" style="margin-bottom: 0; cursor: pointer; font-weight: 400;">
+                            I have read and accept the <a href="#" id="privacyPolicyToggle" style="color: var(--primary-color); text-decoration: underline;">Privacy Policy</a> 
+                            and consent to the processing of my personal data for event registration purposes *
+                        </label>
                     </div>
+                    
+                    <!-- Collapsible Privacy Policy Section -->
+                    <div id="privacyPolicyContent" style="display: none; border: 1px solid var(--surface-border, #e2e8f0); border-radius: var(--radius-md, 0.5rem); padding: 1.5rem; margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-primary); line-height: 1.6;">
+                        <h3 style="margin-top: 0; font-size: 1rem; font-weight: 600; margin-bottom: 1rem;">Privacy Policy</h3>
+                        <p>We inform you that the data you provide to the manager of this website when completing the registration form will be processed in compliance with the provisions of Legislative Decree 196/2003 and GDPR 2016/679.</p>
+                        <p>The data is required in order to manage user registration, organize individual events effectively, and contact the person who will participate.</p>
+                        <p>This notice concerns the personal data sent by the user when completing the registration form.</p>
+                        <p style="margin-bottom: 0;"><strong>Your rights:</strong> You have the right to access, rectify, delete, or restrict the processing of your personal data at any time by contacting us.</p>
+                    </div>
+                    
+                    <span class="field-error" id="privacyConsent-error" style="margin-top: -0.5rem; margin-bottom: 1rem;">You must accept the privacy policy to register</span>
 
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem;">* Indicates
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 2rem; margin-bottom: 1.5rem;">* Indicates
                         required field</p>
-
-                    <div class="form-group form-checkbox-group">
-                        <input type="checkbox" id="reimbursementCheck" name="reimbursementCheck"
-                            style="width: 20px; height: 20px;">
-                        <label for="reimbursementCheck" class="form-label" style="margin-bottom: 0; cursor: pointer;">I
-                            need to request travel reimbursement</label>
-                    </div>
-
-                    <!-- Hidden Fields for Reimbursement -->
-                    <div id="reimbursementSection" class="conditional-section">
-                        <div class="form-group">
-                            <label for="origin" class="form-label">Traveling From (Origin) *</label>
-                            <input type="text" id="origin" name="origin" class="form-input">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="cost" class="form-label">Estimated Cost (€) *</label>
-                            <input type="number" id="cost" name="cost" class="form-input" min="0" step="0.01">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="attachment" class="form-label">Attachments (Cost Estimate / Quote) *</label>
-                            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.5rem;">Please upload a PDF or
-                                Image of your travel estimate.</p>
-                            <div class="custom-file-input" style="position: relative;">
-                                <input type="file" id="attachment" name="attachment" accept=".pdf,.jpg,.jpeg,.png,.zip"
-                                    style="position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer;">
-                                <div class="form-input"
-                                    style="display: flex; align-items: center; gap: 1rem; cursor: pointer;">
-                                    <span
-                                        style="background: linear-gradient(140deg, rgba(58, 104, 153, 0.98), rgba(102, 140, 186, 0.92)); color: white; padding: 0.5rem 1rem; border-radius: 0.25rem; font-size: 0.9rem;">Choose
-                                        file</span>
-                                    <span id="file-name"
-                                        style="color: #64748b; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1;">No
-                                        file
-                                        selected</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div id="formError" class="error-message">Something went wrong. Please try again later.</div>
 
@@ -345,10 +327,6 @@
                         <span class="btn-text">Submit Registration</span>
                         <div class="spinner"></div>
                     </button>
-
-                    <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-secondary); text-align: center;">
-                        Your data is securely processed via Google Forms infrastructure.
-                    </p>
                 </form>
             </div>
         </section>
@@ -361,6 +339,27 @@
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/institutions.js"></script>
     <script src="../assets/js/registration.js"></script>
+    
+    <script>
+        // Privacy Policy Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const privacyToggle = document.getElementById('privacyPolicyToggle');
+            const privacyContent = document.getElementById('privacyPolicyContent');
+            
+            if (privacyToggle && privacyContent) {
+                privacyToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (privacyContent.style.display === 'none' || privacyContent.style.display === '') {
+                        privacyContent.style.display = 'block';
+                        privacyToggle.textContent = 'Hide Privacy Policy';
+                    } else {
+                        privacyContent.style.display = 'none';
+                        privacyToggle.textContent = 'Privacy Policy';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
