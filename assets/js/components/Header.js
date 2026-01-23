@@ -11,7 +11,10 @@ class SiteHeader extends HTMLElement {
                         <img class="navbar__partner" src="${basePath}/assets/images/team/uni_icons/cariparo.png"
                             alt="Fondazione Cariparo logo">
                     </span>
-                    <span class="navbar__identity">
+                    <span class="navbar__identity" style="flex-direction: row; gap: 0.75rem; align-items: center; margin-left: 1.5rem;">
+                        <img src="${basePath}/assets/images/logos/awarenet_logo.svg" 
+                            alt="AWARENET logo" 
+                            style="height: 2.5rem; width: auto; object-fit: contain;">
                         <span class="navbar__title">AWARENET</span>
                     </span>
                 </a>
