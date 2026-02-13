@@ -1,73 +1,60 @@
 # Agent rules
+If you are an agent, you MUST read, understand, and strictly follow all rules in this document BEFORE performing any task.
 
-If you are an agent, you must read, understand, and follow these rules before performing any task.
+This document defines project-specific configurations, constraints, and operational procedures that override any default behavior.
 
-This document contains **project-specific configurations and constraints** for the specific project.
+All rules are mandatory. No exception is allowed. Failure to comply invalidates the task execution.
 
 ---
-
 ## Project Information
 
-- **Project Name:** AWARENET_WEB
-
+- **Project Name:** awarenet_web
 - **Location:**
 
-`/Users/emmatosato/Documents/PhD/PhD Local Projects/awarenet_web/`
+```
 
-- **Website (live):** https://awarenetproject.github.io
-- **Website (local):** http://localhost:8000
+/Users/emmatosato/Projects/PhD/<Project_Name>
 
-- **Purpose:** Web page development
+```
 
 ---
-
 ## Environment Setup
 
 ### Conda Environment
 
+- The environment must be activated before running any command or script. This is **MANDATORY**
+- The conda environment name must not be inferred or changed.
+- The environment name for this project: `awarenet`
 
-- The environment must be activated before running any command or script. This is **MANTORY**.
-- The environment for this project: `awarenet`
-  
 ```bash
 
-conda activate awarenet
+conda activate <enviroment_name>
 
 ```
 
-* The conda environment name must not be inferred or changed.  
-
-### Logs
-
-- A project MUST have a logs folder. If it doesn't exist, create it.
-- For each main task, create a log subfolder in the main logs folder. 
-- All the log files related to that task MUST be stored in the task's log subfolder.
-- The log files inside the task's log subfolder MUST be differentiable, so pay attention to the name of the log files.
-
 ---
-
 ## Context gathering
 
 In order to perform tasks, you must first gather context information about the project:
-1. Visualize all the directories and files in the project with the command `ls -R` or `tree`. 
-2. Then explore the content of the files to understand the project structure and the purpose of each file.
-3. Pay attention if there are any documentation files or folder that can help you understand the project.
 
----
+1. You MUST list the repository structure using `tree -a -L 4`. If `tree` is unavailable, use `ls -R` or `find . -maxdepth 4`. You MUST exclude large or generated directories from the listing (e.g., `node_modules/`, `.venv/`, `dist/`, `build/`, `__pycache__/`). The generated directory tree serves as the reference map for all subsequent steps.
+2. You MUST search for project documentation in `docs/`, `doc/`, or `documentation/`. If present, you MUST read it first. Start from the main index file (e.g., `docs/README.md`) and follow all relevant links or referenced files. Documentation is assumed to describe the intended architecture and usage of the project. If the documentation is missing, incomplete, or outdated, you MUST:
+	- Identify which information is missing.
+	- Inspect the relevant source files to reconstruct that information.
+	- Explicitly report that the documentation is incomplete or inconsistent.
+
+--- 
+
 
 ## Language Rules
-
 * **Code and documentation:** English only
-
-* **Chat language:**
-	* If the user writes in Italian, respond in Italian
-
+* **Chat language:** If the user writes in Italian, respond in Italian
 - Italian is allowed **only in the chat**, never in:
 	- source code
 	- comments
 	- documentation
-	- configuration files
-
----
-
-Failure to follow these rules is considered a violation of the project constraints.
+- configuration files
+- You **MUST NOT** use emoticons. Especially
+	- in the code
+	- in the documentation
+	Is very important you respect this!

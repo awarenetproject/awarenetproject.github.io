@@ -160,3 +160,23 @@
         gap: 2rem;
     }
 }
+
+.event-cta-grid {
+    align-items: stretch;
+    /* Match height of description column and flyer */
+}
+
+.event-info-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    gap: 2rem;
+}
+
+.event-info-column .btn {
+    align-self: flex-start;
+    /* Or center/stretch depending on preference, align-self to avoid full width if not needed */
+    width: 100%;
+    /* Make button wide for better mobile tap targets, or keep explicit width */
+}

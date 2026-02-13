@@ -60,32 +60,19 @@ function doPost(e) {
     const rawData = e.postData.contents;
     const data = JSON.parse(rawData);
 
-    // 3. Handle File Upload (if present)
-    let fileUrl = "";
-    if (data.fileContent && data.fileName) {
-      fileUrl = saveFileToDrive(data.fileContent, data.fileName, data.mimeType, data.email);
-    }
-
-    // 4. Save to Sheet
-    // Columns: A=Timestamp, B=First, C=Last, D=Email, E=Position, F=Affiliation, 
-    //          G=Dietary, H=Reimbursement, I=Origin, J=Cost, K=FileUrl
+    // 3. Save to Sheet
+    // Columns: A=Timestamp, B=First, C=Last, D=Email, E=Affiliation
     const nextRow = sheet.getLastRow() + 1;
     const newRow = [
       new Date(), 
       data.firstName, 
       data.lastName, 
       data.email, 
-      data.position,
-      data.affiliation,
-      data.dietary || "",
-      data.needsReimbursement ? "Yes" : "No",
-      data.origin || "",
-      data.cost || "",
-      fileUrl
+      data.affiliation
     ];
     sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow]);
 
-    // 5. Send Confirmation Email
+    // 4. Send Confirmation Email
     try {
       const emailBody = "Dear " + data.firstName + ",\n\n" +
         "Thank you for registering for CoNeJo: Consciousness - A Neuroscience Journey.\n\n" +
@@ -94,7 +81,6 @@ function doPost(e) {
         "Time: 10:00 - 16:00\n" +
         "Venue: Fondazione Ricerca Biomedica Avanzata VIMM\n" +
         "Via Giuseppe Orus 2, Seminar Room, Padova, Italy\n\n" +
-        (data.needsReimbursement ? "Travel Reimbursement: Requested (from " + data.origin + ", €" + data.cost + ")\n\n" : "") +
         "We look forward to seeing you!\n\n" +
         "Best regards,\n" +
         "The AWARENET Team";
@@ -118,19 +104,6 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
   } finally {
     lock.releaseLock();
-  }
-}
-
-function saveFileToDrive(base64Content, fileName, mimeType, userEmail) {
-  try {
-    const blob = Utilities.newBlob(Utilities.base64Decode(base64Content), mimeType, fileName);
-    const folders = DriveApp.getFoldersByName(CONFIG.FOLDER_NAME);
-    let folder = folders.hasNext() ? folders.next() : DriveApp.createFolder(CONFIG.FOLDER_NAME);
-    const safeName = `${userEmail}_${fileName}`;
-    blob.setName(safeName);
-    return folder.createFile(blob).getUrl();
-  } catch (e) {
-    return "Error saving file: " + e.toString();
   }
 }
 ```
