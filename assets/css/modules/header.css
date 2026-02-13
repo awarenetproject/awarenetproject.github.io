@@ -85,24 +85,26 @@
     }
 
     .navbar__partner {
-        height: 2.2rem;
-        /* Increased to be more visible/proportionate */
+        height: 1.8rem;
+        /* Reduced from 2.2rem */
         width: auto;
     }
 
     .navbar__identity {
         margin-left: 0.25rem;
         /* Tighter spacing */
-        gap: 0.25rem;
+        gap: 0.2rem;
+        /* Tighter gap */
     }
 
     .navbar__awarenet-logo {
-        height: 1.6rem;
-        /* Slightly smaller to balance */
+        height: 1.4rem;
+        /* Reduced from 1.6rem */
     }
 
     .navbar__title {
-        font-size: 1rem;
+        font-size: 0.85rem;
+        /* Reduced from 1rem to ensure fit */
         /* Smaller font to prevent overlap */
         white-space: nowrap;
         /* Keep on one line */
