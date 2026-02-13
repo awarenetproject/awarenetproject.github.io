@@ -103,9 +103,8 @@
     }
 
     .navbar__title {
-        font-size: 0.85rem;
-        /* Reduced from 1rem to ensure fit */
-        /* Smaller font to prevent overlap */
+        font-size: 0.75rem;
+        /* Reduced to 0.75rem to prevent cutoff */
         white-space: nowrap;
         /* Keep on one line */
     }
