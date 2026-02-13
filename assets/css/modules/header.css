@@ -63,34 +63,49 @@
 
 @media (max-width: 768px) {
     .navbar {
-        padding: 0.5rem 1rem;
-        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        /* Reduced padding sides */
+        gap: 0.25rem;
+        /* Minimized gap */
     }
 
     .navbar__brand {
-        gap: 0.5rem;
+        gap: 0.25rem;
         padding: 0.25rem;
+        flex: 1;
+        /* Allow brand to take available space */
+        min-width: 0;
+        /* Enable shrinking */
+        overflow: hidden;
+        /* Prevent overflow */
     }
 
     .navbar__logos {
-        gap: 0.5rem;
+        gap: 0.25rem;
     }
 
     .navbar__partner {
-        height: 1.8rem;
+        height: 2.2rem;
+        /* Increased to be more visible/proportionate */
+        width: auto;
     }
 
     .navbar__identity {
-        margin-left: 0.5rem;
-        gap: 0.4rem;
+        margin-left: 0.25rem;
+        /* Tighter spacing */
+        gap: 0.25rem;
     }
 
     .navbar__awarenet-logo {
-        height: 1.8rem;
+        height: 1.6rem;
+        /* Slightly smaller to balance */
     }
 
     .navbar__title {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        /* Smaller font to prevent overlap */
+        white-space: nowrap;
+        /* Keep on one line */
     }
 }
 
