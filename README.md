@@ -16,7 +16,7 @@ Static multi-page website designed to present the AWARENET network, its research
 │   └── contact.html
 ├── events                   # Event detail pages
 │   ├── event-template.html  # Template for new events
-│   ├── conejo-2026.html
+│   ├── cnj-2026.html
 │   └── retreat-2025.html
 ├── assets
 │   ├── css

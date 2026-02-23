@@ -1,6 +1,6 @@
-# CoNeJo 2026 Registration System Documentation
+# CNJ 2026 Registration System Documentation
 
-This document explicitly details the architecture, setup, and maintenance of the registration system for the CoNeJo 2026 event.
+This document explicitly details the architecture, setup, and maintenance of the registration system for the CNJ 2026 event.
 
 ## 1. System Architecture
 The system uses a **Serverless Architecture** to handle registrations without a traditional backend server.
@@ -13,7 +13,7 @@ The system uses a **Serverless Architecture** to handle registrations without a 
 ## 2. Frontend Implementation
 
 ### Core Files
-*   **`events/conejo-register.html`**: The registration form. Contains custom CSS for the autocomplete dropdown and file input.
+*   **`events/cnj-register.html`**: The registration form. Contains custom CSS for the autocomplete dropdown and file input.
 *   **`assets/js/registration.js`**: Handles:
     *   Form validation (on submit).
     *   Intelligent Autocomplete logic (Fuzzy search).
@@ -38,12 +38,12 @@ The system uses a **Serverless Architecture** to handle registrations without a 
 ### The Backend Code (`Registration.gs`)
 ```javascript
 /* 
-  CONFIGURATION - CoNeJo 2026 Registration Backend
-  Spreadsheet ID configured for: CoNeJo 2026 Registrations
+  CONFIGURATION - CNJ 2026 Registration Backend
+  Spreadsheet ID configured for: CNJ 2026 Registrations
 */
 const CONFIG = {
   SPREADSHEET_ID: "1-No9wPRUgJE5qmTpwGdpSlKhqaeTx5g_UpQNNfKNVuc", 
-  FOLDER_NAME: "CoNeJo_Receipts",
+  FOLDER_NAME: "CNJ_Receipts",
   SHEET_NAME: "Registrations"
 };
 
@@ -75,7 +75,7 @@ function doPost(e) {
     // 4. Send Confirmation Email
     try {
       const emailBody = "Dear " + data.firstName + ",\n\n" +
-        "Thank you for registering for CoNeJo: Consciousness - A Neuroscience Journey.\n\n" +
+        "Thank you for registering for CNJ: Consciousness - A Neuroscience Journey.\n\n" +
         "Event Details:\n" +
         "Date: March 25, 2026\n" +
         "Time: 10:00 - 16:00\n" +
@@ -87,7 +87,7 @@ function doPost(e) {
       
       MailApp.sendEmail({
         to: data.email,
-        subject: "Registration Confirmed - CoNeJo 2026",
+        subject: "Registration Confirmed - CNJ 2026",
         body: emailBody
       });
     } catch(emailError) {

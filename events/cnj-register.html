@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register for CoNeJo 2026 | AWARENET</title>
+    <title>Register for CNJ 2026 | AWARENET</title>
     <link rel="icon" type="image/png" href="../assets/images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -228,22 +228,26 @@
         .autocomplete-item.focused {
             background-color: var(--surface-raised);
         }
-        @media (max-width: 600px) { 
-            .registration-form { 
-                padding: 1.25rem 1rem; 
-                width: 100%; 
-                border-radius: 0.75rem; 
-                box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
-            } 
-            .section { 
-                padding-top: 1.5rem !important; 
-                padding-bottom: 2rem !important; 
-            } 
-            .event-detail__title { 
-                font-size: 1.5rem !important; 
-                margin-bottom: 1.5rem !important; 
-            } 
-        }    </style>
+
+        @media (max-width: 600px) {
+            .registration-form {
+                padding: 1.25rem 1rem;
+                width: 100%;
+                border-radius: 0.75rem;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            }
+
+            .section {
+                padding-top: 1.5rem !important;
+                padding-bottom: 2rem !important;
+            }
+
+            .event-detail__title {
+                font-size: 1.5rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+        }
+    </style>
 </head>
 
 <body class="theme-horizon">
@@ -252,7 +256,7 @@
     <main>
         <section class="section section--surface" style="padding-top: 2rem;">
             <div class="section__content section__content--full event-detail">
-                <h1 class="event-detail__title" style="margin-top: 1.5rem; margin-bottom: 2rem;">Register for CoNeJo
+                <h1 class="event-detail__title" style="margin-top: 1.5rem; margin-bottom: 2rem;">Register for CNJ
                     2026</h1>
 
                 <div id="registrationSuccess" class="success-message">
@@ -292,33 +296,50 @@
                         <label for="affiliation" class="form-label">Affiliation / Institution *</label>
                         <div class="autocomplete-container">
                             <input type="text" id="affiliation" name="affiliation" class="form-input"
-                                placeholder="Start typing or click to see options. If yours is not listed, please select &quot;Other&quot;" autocomplete="off" required>
+                                placeholder="Start typing or click to see options. If yours is not listed, please select &quot;Other&quot;"
+                                autocomplete="off" required>
                             <div id="affiliation-dropdown" class="autocomplete-dropdown"></div>
                         </div>
-                        <span class="field-error" id="affiliation-error">This field must be completed with the selection of an institution from the dropdown. If yours is not listed, please select "Other"</span>
+                        <span class="field-error" id="affiliation-error">This field must be completed with the selection
+                            of an institution from the dropdown. If yours is not listed, please select "Other"</span>
                     </div>
 
-                    <div class="form-group form-checkbox-group" style="align-items: flex-start; margin-bottom: 1rem; margin-top: 2rem;">
-                        <input type="checkbox" id="privacyConsent" name="privacyConsent" 
+                    <div class="form-group form-checkbox-group"
+                        style="align-items: flex-start; margin-bottom: 1rem; margin-top: 2rem;">
+                        <input type="checkbox" id="privacyConsent" name="privacyConsent"
                             style="width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0;" required>
-                        <label for="privacyConsent" class="form-label" style="margin-bottom: 0; cursor: pointer; font-weight: 400;">
-                            I have read and accept the <a href="#" id="privacyPolicyToggle" style="color: var(--primary-color); text-decoration: underline;">Privacy Policy</a> 
+                        <label for="privacyConsent" class="form-label"
+                            style="margin-bottom: 0; cursor: pointer; font-weight: 400;">
+                            I have read and accept the <a href="#" id="privacyPolicyToggle"
+                                style="color: var(--primary-color); text-decoration: underline;">Privacy Policy</a>
                             and consent to the processing of my personal data for event registration purposes *
                         </label>
                     </div>
-                    
-                    <!-- Collapsible Privacy Policy Section -->
-                    <div id="privacyPolicyContent" style="display: none; border: 1px solid var(--surface-border, #e2e8f0); border-radius: var(--radius-md, 0.5rem); padding: 1.5rem; margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-primary); line-height: 1.6;">
-                        <h3 style="margin-top: 0; font-size: 1rem; font-weight: 600; margin-bottom: 1rem;">Privacy Policy</h3>
-                        <p>We inform you that the data you provide to the manager of this website when completing the registration form will be processed in compliance with the provisions of Legislative Decree 196/2003 and GDPR 2016/679.</p>
-                        <p>The data is required in order to manage user registration, organize individual events effectively, and contact the person who will participate.</p>
-                        <p>This notice concerns the personal data sent by the user when completing the registration form.</p>
-                        <p style="margin-bottom: 0;"><strong>Your rights:</strong> You have the right to access, rectify, delete, or restrict the processing of your personal data at any time by contacting us.</p>
-                    </div>
-                    
-                    <span class="field-error" id="privacyConsent-error" style="margin-top: -0.5rem; margin-bottom: 1rem;">You must accept the privacy policy to register</span>
 
-                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 2rem; margin-bottom: 1.5rem;">* Indicates
+                    <!-- Collapsible Privacy Policy Section -->
+                    <div id="privacyPolicyContent"
+                        style="display: none; border: 1px solid var(--surface-border, #e2e8f0); border-radius: var(--radius-md, 0.5rem); padding: 1.5rem; margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-primary); line-height: 1.6;">
+                        <h3 style="margin-top: 0; font-size: 1rem; font-weight: 600; margin-bottom: 1rem;">Privacy
+                            Policy</h3>
+                        <p>We inform you that the data you provide to the manager of this website when completing the
+                            registration form will be processed in compliance with the provisions of Legislative Decree
+                            196/2003 and GDPR 2016/679.</p>
+                        <p>The data is required in order to manage user registration, organize individual events
+                            effectively, and contact the person who will participate.</p>
+                        <p>This notice concerns the personal data sent by the user when completing the registration
+                            form.</p>
+                        <p style="margin-bottom: 0;"><strong>Your rights:</strong> You have the right to access,
+                            rectify, delete, or restrict the processing of your personal data at any time by contacting
+                            us.</p>
+                    </div>
+
+                    <span class="field-error" id="privacyConsent-error"
+                        style="margin-top: -0.5rem; margin-bottom: 1rem;">You must accept the privacy policy to
+                        register</span>
+
+                    <p
+                        style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 2rem; margin-bottom: 1.5rem;">
+                        * Indicates
                         required field</p>
 
                     <div id="formError" class="error-message">Something went wrong. Please try again later.</div>
@@ -339,13 +360,13 @@
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/institutions.js"></script>
     <script src="../assets/js/registration.js"></script>
-    
+
     <script>
         // Privacy Policy Toggle
         document.addEventListener('DOMContentLoaded', () => {
             const privacyToggle = document.getElementById('privacyPolicyToggle');
             const privacyContent = document.getElementById('privacyPolicyContent');
-            
+
             if (privacyToggle && privacyContent) {
                 privacyToggle.addEventListener('click', (e) => {
                     e.preventDefault();
