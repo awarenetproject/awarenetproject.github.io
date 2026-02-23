@@ -50,17 +50,11 @@ const CONFIG = {
 function doPost(e) {
   const lock = LockService.getScriptLock();
   lock.tryLock(10000);
-
   try {
-    // 1. Connect to Spreadsheet
     const doc = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
     const sheet = doc.getSheetByName(CONFIG.SHEET_NAME);
-
-    // 2. Parse Data
     const rawData = e.postData.contents;
     const data = JSON.parse(rawData);
-
-    // 3. Save to Sheet
     // Columns: A=Timestamp, B=First, C=Last, D=Email, E=Affiliation
     const nextRow = sheet.getLastRow() + 1;
     const newRow = [
@@ -71,39 +65,51 @@ function doPost(e) {
       data.affiliation
     ];
     sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow]);
+    console.log("Riga salvata correttamente");
 
-    // 4. Send Confirmation Email
-    try {
-      const emailBody = "Dear " + data.firstName + ",\n\n" +
-        "Thank you for registering for CNJ: Consciousness - A Neuroscience Journey.\n\n" +
-        "Event Details:\n" +
-        "Date: March 25, 2026\n" +
-        "Time: 10:00 - 16:00\n" +
-        "Venue: Fondazione Ricerca Biomedica Avanzata VIMM\n" +
-        "Via Giuseppe Orus 2, Seminar Room, Padova, Italy\n\n" +
-        "We look forward to seeing you!\n\n" +
-        "Best regards,\n" +
-        "The AWARENET Team";
-      
-      MailApp.sendEmail({
-        to: data.email,
-        subject: "Registration Confirmed - CNJ 2026",
-        body: emailBody
-      });
-    } catch(emailError) {
-      console.log("Email send error: " + emailError);
-    }
+    // COSTRUZIONE EMAIL
+    const emailBody = "Dear " + data.firstName + ",\n\n" +
+      "Thank you for registering for CNJ: Consciousness - A Neuroscience Journey.\n\n" +
+      "Event Details:\n" +
+      "Date: March 25, 2026\n" +
+      "Time: 10:00 - 16:00\n" +
+      "Venue: Fondazione Ricerca Biomedica Avanzata VIMM\n" +
+      "Via Giuseppe Orus 2, Seminar Room, Padova, Italy\n\n" +
+      (data.needsReimbursement ? "Travel Reimbursement: Requested (from " + data.origin + ", €" + data.cost + ")\n\n" : "") +
+      "We look forward to seeing you!\n\n" +
+      "Best regards,\n" +
+      "The AWARENET Team";
 
-    return ContentService
-      .createTextOutput(JSON.stringify({ "status": "success", "message": "Row added" }))
-      .setMimeType(ContentService.MimeType.JSON);
+    console.log("Corpo email generato: " + emailBody);
+
+    // INVIO EMAIL (Sintassi Oggetto)
+    MailApp.sendEmail({
+      to: data.email,
+      subject: "Registration Confirmed - CNJ 2026",
+      body: emailBody
+    });
+    console.log("Email inviata a: " + data.email);
+
+    return ContentService.createTextOutput(JSON.stringify({ "status": "success", "message": "Row added" })).setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ "status": "error", "message": error.toString() }))
-      .setMimeType(ContentService.MimeType.JSON);
+    console.error("ERRORE: " + error.toString()); // LOG ERRORE
+    return ContentService.createTextOutput(JSON.stringify({ "status": "error", "message": error.toString() })).setMimeType(ContentService.MimeType.JSON);
   } finally {
     lock.releaseLock();
+  }
+}
+
+function saveFileToDrive(base64Content, fileName, mimeType, userEmail) {
+  try {
+    const blob = Utilities.newBlob(Utilities.base64Decode(base64Content), mimeType, fileName);
+    const folders = DriveApp.getFoldersByName(CONFIG.FOLDER_NAME);
+    let folder = folders.hasNext() ? folders.next() : DriveApp.createFolder(CONFIG.FOLDER_NAME);
+    const safeName = `${userEmail}_${fileName}`;
+    blob.setName(safeName);
+    return folder.createFile(blob).getUrl();
+  } catch (e) {
+    return "Error saving file: " + e.toString();
   }
 }
 ```
