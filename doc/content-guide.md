@@ -26,7 +26,7 @@ News are currently listed in `pages/news.html`.
     *   Event details (Date, Time, Location).
     *   Registration button link (if applicable).
     *   Program section.
-3.  **Important**: If the event has a specific registration form, you might need a separate registration page (like `cnj-register.html`).
+3.  **Important**: If the event has a specific registration form, you might need a separate registration page (like `conejo-register.html`).
 
 ## 3. Adding a Team Member
 

@@ -13,7 +13,7 @@ The system uses a **Serverless Architecture** to handle registrations without a 
 ## 2. Frontend Implementation
 
 ### Core Files
-*   **`events/cnj-register.html`**: The registration form. Contains custom CSS for the autocomplete dropdown and file input.
+*   **`events/conejo-register.html`**: The registration form. Contains custom CSS for the autocomplete dropdown and file input.
 *   **`assets/js/registration.js`**: Handles:
     *   Form validation (on submit).
     *   Intelligent Autocomplete logic (Fuzzy search).
